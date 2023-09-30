@@ -1,0 +1,91 @@
+@import '../../colors';
+.AppButton{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  flex-direction: row;
+  height:40px;
+  width: fit-content;
+  padding:8px 16px;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 17px;
+  text-transform: capitalize;
+  color: #2B2B2B;
+  position: relative;
+
+  .Stat{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: -12px;
+    right: -12px;
+    width: 24px;
+    height: 24px;
+    font-size: 16px;
+    border-radius: 12px;
+    color: $white;
+    background-color: darkred;
+  }
+
+  &.BackgroundColorWhite {
+    background-color: $white;
+  }
+  &.BackgroundColorNone{
+    background-color: transparent;
+  }
+  &.BackgroundColorOrange {
+    background-color: $white;
+  }
+  &.TextColorWhite {
+    color:$white;
+  }
+  &.TextColorOrange {
+    color:$white;
+  }
+  &.TextColorBlack {
+    color:$black;
+  }
+  &.Shadow {
+    box-shadow: 0px 4px 4px 0px #00000040;
+  }
+  &.Border {
+    border: 1px solid $darkGrey;
+  }
+  &.NoBorder {
+    border: none;
+  }
+  &.BorderRadiusSmall {
+    border-radius: 5px;
+  }
+  &.BorderRadiusBig {
+    border-radius: 30px;
+  }
+  &.SizeSmall {
+    height: 40px;
+    font-size: 14px;
+    line-height :  17px;
+    font-weight: 600;
+    width:200px;
+  }
+  &.SizeMedium {
+    height: 52px;
+    font-size: 16px;
+    line-height :  19px;
+    font-weight: 500;
+  }
+  &.SizeBig {
+    height: 64px;
+    font-size: 24px;
+    line-height :  32px;
+    font-weight: 700;
+  }
+
+
+
+}
+

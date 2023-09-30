@@ -1,0 +1,33 @@
+@import '../../colors';
+.FormDiv{
+  display:flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  //gap:60px;
+  //width:536px;
+  width: auto;
+  height:480px;
+  background-color:$black;
+  padding: 64px 56px ;
+  gap: 24px;
+  flex-shrink: 0;
+  border-radius: 20px;
+  border: 1px solid $white;
+
+  Input{
+    background-color: $black;
+    color:$white;
+    font-size: 16px;
+    width: 430px;
+    height: 60px;
+    flex-shrink: 0;
+    border-radius: 10px;
+    border: 1px solid $white;
+  }
+
+  .RegButtonDiv{
+    display:flex;
+    gap:40px;
+  }
+}

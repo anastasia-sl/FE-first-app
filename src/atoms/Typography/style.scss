@@ -1,0 +1,69 @@
+@import '../../colors';
+.AppTypography{
+  font-family: 'Inter';
+  font-style: normal;
+  &.SizeTitle1{
+    font-size: 48px;
+  }
+  &.SizeTitle2{
+    font-size: 32px;
+  }
+  &.SizeTitle5{
+    font-size: 24px;
+  }
+  &.SizeTitle3{
+    font-size: 16px;
+  }
+  &.SizeTitle4{
+    font-size: 18px;
+  }
+  &.SizeTitle5{
+    font-size: 24px;
+  }
+  &.FontWeightBody1{
+    font-weight: 700;
+  }
+  &.FontWeightBody4{
+    font-weight: 600;
+  }
+  &.FontWeightBody2{
+    font-weight: 500;
+  }
+  &.FontWeightBody3{
+    font-weight: 400;
+  }
+  &.TextColorWhite{
+    color:$white;
+  }
+  &.TextColorBlack{
+    color:$black;
+  }
+  &.TextColorLightGrey{
+    color:$lightGrey;
+  }
+  &.TextColorDarkGrey{
+    color:$darkGrey;
+  }
+  &.NoFilling{
+    background:none;
+  }
+  &.FillingWhite{
+    background-color: $white;
+  }
+  &.FillingBlack{
+    background-color: $black;
+  }
+  &.FillingGrey{
+    background-color: $grey;
+  }
+  &.TextCaseLower{
+    text-transform: lowercase;
+  }
+  &.TextCaseNormal{
+    text-transform: none;
+  }
+  &.TextCaseUpper{
+    text-transform: uppercase;
+  }
+}
+
