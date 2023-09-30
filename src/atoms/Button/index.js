@@ -22,7 +22,6 @@ function Button (props){
             'SizeBig': size === 'big',
         })}
                 {...baseProps}>
-            {stat.count ? <div className='Stat'>{stat.count}</div> : null}
             {title}
             {' '}
             {children}

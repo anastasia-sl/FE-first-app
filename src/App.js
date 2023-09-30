@@ -1,12 +1,13 @@
-import logo from './logo.svg';
 import './App.css';
-import RegistrationForm from "./molecules/RegistrationForm";
+import MainPage from "./pages/MainPage";
+import AppRoutes from "./routes/routes";
 
 function App() {
   return (
-    <div className="App">
-      <RegistrationForm/>
-    </div>
+      <div className="App">
+        <MainPage/>
+        <AppRoutes/>
+      </div>
   );
 }
 

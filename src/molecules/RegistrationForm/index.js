@@ -3,6 +3,7 @@ import {useState} from "react";
 import './style.scss';
 import Typography from "../../atoms/Typography";
 import Button from "../../atoms/Button";
+import {Link} from "react-router-dom";
 
 function RegistrationForm (props){
     const [value, setValue] = useState();
@@ -34,10 +35,11 @@ function RegistrationForm (props){
                     onChange={(e) => {setValue(e.target.value)}}
                 />
                 <div className="RegButtonDiv">
-                    <Button title='Back' size='big' borderRadius='small' />
+                        <Link to="/home" className="GoBackLink">
+                            <Button title='Back' size='big' borderRadius='small' />
+                        </Link>
                     <Button title='Sign up' size='big' borderRadius='small' />
                 </div>
-
             </div>
         </div>
     )
