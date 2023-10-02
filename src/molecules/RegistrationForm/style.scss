@@ -6,10 +6,10 @@
   align-items: center;
   //gap:60px;
   //width:536px;
-  width: auto;
+  width: 600px;
   height:480px;
   background-color:$black;
-  padding: 64px 56px ;
+  padding: 64px 96px ;
   gap: 24px;
   flex-shrink: 0;
   border-radius: 20px;
@@ -22,12 +22,32 @@
     width: 430px;
     height: 60px;
     flex-shrink: 0;
-    border-radius: 10px;
     border: 1px solid $white;
   }
 
   .RegButtonDiv{
     display:flex;
     gap:40px;
+    padding: 10px;
+  }
+  .AccExistDiv{
+    display:flex;
+    gap:6px;
+  }
+  .RegLabels{
+    display:flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding-right:50px;
+    align-items: flex-start
+  }
+  .InputsBlock{
+    display:flex;
+    flex-direction: column;
+    gap:30px;
+  }
+  .RegBlock{
+    display:flex;
+    padding-right: 140px;
   }
 }

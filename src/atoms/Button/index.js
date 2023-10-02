@@ -8,7 +8,7 @@ function Button (props){
     return (
         <button className={cn('AppButton', {
             'BackgroundColorWhite': backgrndColor === 'white',
-            'BackgroundColorOrange': backgrndColor === 'orange',
+            'BackgroundColorViolet': backgrndColor === 'violet',
             'BackgroundColorNone': backgrndColor === 'none',
             'TextColorWhite': textColor === 'white',
             'TextColorBlack': textColor === 'black',
@@ -30,7 +30,7 @@ function Button (props){
 }
 
 Button.propTypes = {
-    backgrndColor:PropTypes.oneOf(['white', 'orange', 'none']),
+    backgrndColor:PropTypes.oneOf(['white', 'violet', 'none']),
     textColor: PropTypes.oneOf(['white', 'black', 'orange']),
     shadow: PropTypes.bool,
     borderRadius: PropTypes.oneOf(['none', 'small', 'big']),

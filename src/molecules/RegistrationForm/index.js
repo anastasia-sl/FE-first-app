@@ -5,6 +5,7 @@ import Typography from "../../atoms/Typography";
 import Button from "../../atoms/Button";
 import {Link} from "react-router-dom";
 import axios from 'axios';
+import InputLabel from "../../atoms/FormInputLabel";
 
 function RegistrationForm() {
     const [formData, setFormData] = useState({
@@ -49,37 +50,46 @@ function RegistrationForm() {
         <div>
             <form className='FormBlock' onSubmit={handleSubmit}>
                 <Typography fontWeight='body3' fontSize='title2'>Registration</Typography>
-                    <label style={{ color: 'white', fontSize: '20px', fontWeight: '400'}}>Name</label>
-                    <input
-                        type="text"
-                        name="username"
-                        value={formData.username}
-                        onChange={handleChange}
-                    />
-                    <label style={{ color: 'white', fontSize: '20px', fontWeight: '400'}}>Email</label>
-                    <input
-                        type="email"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleChange}
-                    />
-                    <label style={{ color: 'white', fontSize: '20px', fontWeight: '400'}}>Password</label>
-                    <input
-                        type="password"
-                        name="password"
-                        value={formData.password}
-                        onChange={handleChange}
-                    />
-                {/*<button type="submit">Зарегистрироваться</button>*/}
+                <div className='RegBlock'>
+                    <div className='RegLabels'>
+                        <InputLabel title='Username'/>
+                        <InputLabel title='Email'/>
+                        <InputLabel title='Password'/>
+                    </div>
+                    <div className='InputsBlock'>
+                        <input
+                            type="text"
+                            name="username"
+                            value={formData.username}
+                            onChange={handleChange}
+                        />
+                        <input
+                            type="email"
+                            name="email"
+                            value={formData.email}
+                            onChange={handleChange}
+                        />
+                        <input
+                            type="password"
+                            name="password"
+                            value={formData.password}
+                            onChange={handleChange}
+                        />
+                    </div>
+                </div>
                 <div className="RegButtonDiv">
                      <Link to="/home" className="GoBackLink">
-                         <Button title='Back' size='big' borderRadius='small' />
+                         <Button title='Back' size='medium' borderRadius='noBorder' backgrndColor='violet' border=''/>
                     </Link>
-                    <Button onSubmit={handleSubmit} title='Sign up' size='big' borderRadius='small' />
+                    <Button onSubmit={handleSubmit} title='Sign up' size='medium' borderRadius='noBorder' backgrndColor='violet'/>
+                </div>
+                <div className='AccExistDiv'>
+                <Typography fontWeight='body3' fontSize='title2'>Already have an account?</Typography>
+                    <Link to="/logIn" className="LogInLink">
+                        <Typography fontWeight='body3' fontSize='title2'>Sign in</Typography>
+                    </Link>
                 </div>
             </form>
-            {!!response && <div>Регистрация успешна: {JSON.stringify(response)}</div>}
-            {!!error && <div>Ошибка: {JSON.stringify(error)}</div>}
         </div>
     );
 }

@@ -1,7 +1,7 @@
 import {Routes, Route, Link} from "react-router-dom"
 import HomePage from "../pages/homePage";
 import RegistrationPage from "../pages/registrationPage";
-import NotFoundPage from "../pages/notFoundPage";
+import LogInPage from "../pages/LogInPage";
 
 function AppRoutes() {
     return (
@@ -9,7 +9,8 @@ function AppRoutes() {
             <Routes>
                 <Route path="/home" element={<HomePage/>}/>
                 <Route path="/registration" element={<RegistrationPage/>}/>
-                <Route path="*" element={<NotFoundPage/>}/>
+                <Route path="/logIn" element={<LogInPage/>}/>
+                <Route path="*" element={<HomePage/>}/>
             </Routes>
         </div>
     );
