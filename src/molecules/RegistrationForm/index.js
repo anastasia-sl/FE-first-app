@@ -1,5 +1,5 @@
 import React from "react";
-import {useState} from "react";
+import {useState, useMemo, useCallback, memo} from "react";
 import './style.scss';
 import Typography from "../../atoms/Typography";
 import Button from "../../atoms/Button";
@@ -8,7 +8,7 @@ import axios from 'axios';
 
 function RegistrationForm() {
     const [formData, setFormData] = useState({
-        name: '',
+        username: '',
         email: '',
         password: '',
     });
@@ -16,45 +16,34 @@ function RegistrationForm() {
     const [response, setResponse] = useState(null);
     const [error, setError] = useState(null);
 
-    const handleChange = (event) => {
+    const handleChange = useCallback((event) => {
         const { name, value } = event.target;
         setFormData({
             ...formData,
             [name]: value,
         });
-    }
+    }, []);
 
-    const handleSubmit = (event) => {
+    const handleSubmit = useCallback((event) => {
         event.preventDefault();
-
-        axios.post('/api/v1/auth/register', formData)
-            .then((response) => {
+        console.log(formData)
+        axios.post('/api/v1/auth/register', formData).then((response) => {
+            if (response.status === 201) {
+                localStorage.setItem('username', response.data.jwtToken);
+                localStorage.setItem('jwtToken', response.data.username);
                 setResponse({
                     username: response.data.username,
                     jwtToken: response.data.jwtToken,
                 });
-                setError(null);
-                console.log("Response from the server:");
-                console.log("String username:", response.data.username);
-                console.log("String jwtToken(to be changed in upcoming tickets):", response.data.jwtToken);
-                console.log(formData);
-            })
+            }
+        })
             .catch((error) => {
                 setResponse(null);
                 setError(error.message);
+                console.log("Response from the server:", error);
             });
+    }, [formData])
 
-        // axios.post('/api/v1/auth/register', formData)
-        //     .then((response) => {
-        //         setResponse(response.data);
-        //         setError(null);
-        //         console.log(formData)
-        //     })
-        //     .catch((error) => {
-        //         setResponse(null);
-        //         setError(error.message);
-        //     });
-    }
 
     return (
         <div>
@@ -63,8 +52,8 @@ function RegistrationForm() {
                     <label style={{ color: 'white', fontSize: '20px', fontWeight: '400'}}>Name</label>
                     <input
                         type="text"
-                        name="name"
-                        value={formData.name}
+                        name="username"
+                        value={formData.username}
                         onChange={handleChange}
                     />
                     <label style={{ color: 'white', fontSize: '20px', fontWeight: '400'}}>Email</label>
@@ -89,10 +78,10 @@ function RegistrationForm() {
                     <Button onSubmit={handleSubmit} title='Sign up' size='big' borderRadius='small' />
                 </div>
             </form>
-            {response && <div>Регистрация успешна: {response}</div>}
-            {error && <div>Ошибка: {error}</div>}
+            {!!response && <div>Регистрация успешна: {JSON.stringify(response)}</div>}
+            {!!error && <div>Ошибка: {JSON.stringify(error)}</div>}
         </div>
     );
 }
 
-export default RegistrationForm;
+export default memo(RegistrationForm);
