@@ -1,3 +1,7 @@
-.GoBackLink{
-  text-decoration:none;
+@import '../../colors';
+
+.RegistrationPageDiv{
+  background-color: $black;
+  display:flex;
+  justify-content: center;
 }

@@ -49,44 +49,48 @@ function RegistrationForm() {
     return (
         <div>
             <form className='FormBlock' onSubmit={handleSubmit}>
-                <Typography fontWeight='body3' fontSize='title2'>Registration</Typography>
-                <div className='RegBlock'>
-                    <div className='RegLabels'>
-                        <InputLabel title='Username'/>
-                        <InputLabel title='Email'/>
-                        <InputLabel title='Password'/>
-                    </div>
-                    <div className='InputsBlock'>
-                        <input
-                            type="text"
-                            name="username"
-                            value={formData.username}
-                            onChange={handleChange}
-                        />
-                        <input
-                            type="email"
-                            name="email"
-                            value={formData.email}
-                            onChange={handleChange}
-                        />
-                        <input
-                            type="password"
-                            name="password"
-                            value={formData.password}
-                            onChange={handleChange}
-                        />
-                    </div>
+                <Link to="/home" className="GoBackLink">
+                    <Typography fontWeight='body3' fontSize='title2'>Back</Typography>
+                </Link>
+                <Typography fontWeight='body3' variant='title5' color='white'>Create your account</Typography>
+                {/*<div className='RegBlock'>*/}
+                {/*    <div className='RegLabels'></div>*/}
+                <div className='InputBlock'>
+                    <InputLabel title='Username'/>
+                    <input
+                        type="text"
+                        name="username"
+                        value={formData.username}
+                        onChange={handleChange}
+                    />
                 </div>
+                <div className='InputBlock'>
+                     <InputLabel title='Email address'/>
+                     <input
+                         type="email"
+                         name="email"
+                         value={formData.email}
+                         onChange={handleChange}
+                     />
+                </div>
+                <div className='InputBlock'>
+                    <InputLabel title='Password'/>
+                    <input
+                        type="password"
+                        name="password"
+                        value={formData.password}
+                        onChange={handleChange}
+                    />
+                </div>
+                {/*</div>*/}
                 <div className="RegButtonDiv">
-                     <Link to="/home" className="GoBackLink">
-                         <Button title='Back' size='medium' borderRadius='noBorder' backgrndColor='violet' border=''/>
-                    </Link>
-                    <Button onSubmit={handleSubmit} title='Sign up' size='medium' borderRadius='noBorder' backgrndColor='violet'/>
+                    <Button onSubmit={handleSubmit} title='Register Account' size='medium' borderRadius='small' backgrndColor='violet'/>
+
                 </div>
                 <div className='AccExistDiv'>
                 <Typography fontWeight='body3' fontSize='title2'>Already have an account?</Typography>
                     <Link to="/logIn" className="LogInLink">
-                        <Typography fontWeight='body3' fontSize='title2'>Sign in</Typography>
+                        <Typography fontWeight='body4' fontSize='title2'>Sign in</Typography>
                     </Link>
                 </div>
             </form>

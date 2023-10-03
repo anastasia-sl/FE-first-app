@@ -4,7 +4,9 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 function RegistrationPage() {
     return (
-<RegistrationForm />
+        <div className='RegistrationPageDiv'>
+            <RegistrationForm />
+        </div>
     );
 }
 
