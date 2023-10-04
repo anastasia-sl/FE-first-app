@@ -1,9 +1,10 @@
 import './style.scss';
+import LoginForm from "../../molecules/LoginForm";
 
 function LogInPage() {
     return (
         <div>
-            <h1>Log in page</h1>
+            <LoginForm/>
         </div>
     );
 }

@@ -8,6 +8,7 @@ function HomePage() {
             <div>
                 {/*<Link to="/home">Home</Link>*/}
                 <Link to="/registration">Registration</Link>
+                <Link to="/logIn">LogIn</Link>
             </div>
         </div>
     );

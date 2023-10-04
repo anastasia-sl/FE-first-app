@@ -7,10 +7,9 @@ import {Link} from "react-router-dom";
 import axios from 'axios';
 import InputLabel from "../../atoms/FormInputLabel";
 
-function RegistrationForm() {
+function LoginForm() {
     const [formData, setFormData] = useState({
         username: '',
-        email: '',
         password: '',
     });
 
@@ -28,12 +27,13 @@ function RegistrationForm() {
     const handleSubmit = useCallback((event) => {
         event.preventDefault();
         console.log(formData)
-        axios.post('/api/v1/auth/register', formData).then((response) => {
+        axios.post('/api/v1/auth/login', formData).then((response) => {
             if (response.status === 201) {
-                localStorage.setItem('username', response.data.jwtToken);
                 localStorage.setItem('jwtToken', response.data.username);
                 setResponse({
                     username: response.data.username,
+                    email: response.data.email,
+                    userRole: response.data.userRole,
                     jwtToken: response.data.jwtToken,
                 });
             }
@@ -52,7 +52,7 @@ function RegistrationForm() {
                 <Link to="/home" className="GoBackLink">
                     <Typography fontWeight='body3' fontSize='title2'>Back</Typography>
                 </Link>
-                <Typography fontWeight='body3' variant='title5' color='white'>Create your account</Typography>
+                <Typography fontWeight='body3' variant='title5' color='white'>Welcome Back</Typography>
                 {/*<div className='RegBlock'>*/}
                 {/*    <div className='RegLabels'></div>*/}
                 <div className='InputBlock'>
@@ -66,16 +66,6 @@ function RegistrationForm() {
                     />
                 </div>
                 <div className='InputBlock'>
-                     <InputLabel title='Email address'/>
-                     <input
-                         type="email"
-                         placeholder="Enter email address"
-                         name="email"
-                         value={formData.email}
-                         onChange={handleChange}
-                     />
-                </div>
-                <div className='InputBlock'>
                     <InputLabel title='Password'/>
                     <input
                         type="password"
@@ -87,13 +77,13 @@ function RegistrationForm() {
                 </div>
                 {/*</div>*/}
                 <div className="RegButtonDiv">
-                    <Button onSubmit={handleSubmit} title='Register Account' size='medium' borderRadius='small' backgrndColor='violet'/>
+                    <Button onSubmit={handleSubmit} title='Login' size='medium' borderRadius='small' backgrndColor='violet'/>
 
                 </div>
                 <div className='AccExistDiv'>
-                <Typography fontWeight='body3' fontSize='title2'>Already have an account?</Typography>
-                    <Link to="/logIn" className="LogInLink">
-                        <Typography fontWeight='body4' fontSize='title2'>Sign in</Typography>
+                    <Typography fontWeight='body3' fontSize='title2'>Don't have an account?</Typography>
+                    <Link to="/registration" className="LogInLink">
+                        <Typography fontWeight='body4' fontSize='title2'>Sign up</Typography>
                     </Link>
                 </div>
             </form>
@@ -101,4 +91,4 @@ function RegistrationForm() {
     );
 }
 
-export default memo(RegistrationForm);
+export default memo(LoginForm);
