@@ -3,19 +3,22 @@ import {useState, useMemo, useCallback, memo} from "react";
 import './style.scss';
 import Typography from "../../atoms/Typography";
 import Button from "../../atoms/Button";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import axios from 'axios';
 import InputLabel from "../../atoms/FormInputLabel";
 
-function RegistrationForm() {
-    const [formData, setFormData] = useState({
-        username: '',
-        email: '',
-        password: '',
-    });
+const initialFormData = {
+    username: '',
+    email: '',
+    password: '',
+};
 
+function RegistrationForm() {
+    const [formData, setFormData] = useState(initialFormData);
     const [response, setResponse] = useState(null);
     const [error, setError] = useState(null);
+    const navigate = useNavigate();
+
 
     // const handleChange = useCallback((event) => {
     //     const { name, value } = event.target;
@@ -35,6 +38,10 @@ function RegistrationForm() {
     const handleSubmit = useCallback((event) => {
         event.preventDefault();
         console.log(formData)
+        if (!formData.username || !formData.email || !formData.password) {
+            setError('Please fill in all fields');
+            return;
+        }
         axios.post('/api/v1/auth/register', formData).then((response) => {
             if (response.status === 201) {
                 localStorage.setItem('username', response.data.jwtToken);
@@ -43,14 +50,15 @@ function RegistrationForm() {
                     username: response.data.username,
                     jwtToken: response.data.jwtToken,
                 });
+                navigate('/home');
             }
         })
             .catch((error) => {
                 setResponse(null);
                 setError(error.message);
-                console.log("Response from the server:", error);
             });
-    }, [formData])
+        setFormData(initialFormData);
+    }, [formData, navigate])
 
     return (
         <div>
@@ -91,7 +99,8 @@ function RegistrationForm() {
                         onChange={handleChange}
                     />
                 </div>
-                {/*</div>*/}
+                {/*{response && <Typography color='white'>Your account was created</Typography>}*/}
+                {error && <Typography color='white'>There was a problem with creating your account. Try again</Typography>}
                 <div className="RegButtonDiv">
                     <Button onSubmit={handleSubmit} title='Register Account' size='medium' borderRadius='small' backgrndColor='violet'/>
 
