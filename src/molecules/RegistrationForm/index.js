@@ -17,13 +17,20 @@ function RegistrationForm() {
     const [response, setResponse] = useState(null);
     const [error, setError] = useState(null);
 
-    const handleChange = useCallback((event) => {
+    // const handleChange = useCallback((event) => {
+    //     const { name, value } = event.target;
+    //     setFormData({
+    //         ...formData,
+    //         [name]: value,
+    //     });
+    // }, []);
+    const handleChange = (event) => {
         const { name, value } = event.target;
         setFormData({
             ...formData,
             [name]: value,
         });
-    }, []);
+    }
 
     const handleSubmit = useCallback((event) => {
         event.preventDefault();
@@ -44,7 +51,6 @@ function RegistrationForm() {
                 console.log("Response from the server:", error);
             });
     }, [formData])
-
 
     return (
         <div>
