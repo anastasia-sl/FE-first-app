@@ -3,7 +3,7 @@ import LoginForm from "../../molecules/LoginForm";
 
 function LogInPage() {
     return (
-        <div>
+        <div className='LoginPageDiv'>
             <LoginForm/>
         </div>
     );

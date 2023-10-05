@@ -7,6 +7,7 @@ import Button from "../../atoms/Button";
 import {Link} from "react-router-dom";
 import axios from 'axios';
 import InputLabel from "../../atoms/FormInputLabel";
+import WSLogo from "../../atoms/icons/WS_logo.png";
 
 const initialFormData = {
     username: '',
@@ -55,6 +56,7 @@ function LoginForm() {
             <form className='FormBlock' onSubmit={handleSubmit}>
                 <Link to="/home" className="GoBackLink">
                     <Typography fontWeight='body3' fontSize='title2'>Back</Typography>
+                    <img src={WSLogo} className='RegLogoImg'/>
                 </Link>
                 <Typography fontWeight='body3' variant='title5' color='white'>Welcome Back</Typography>
                 <div className='InputBlock'>

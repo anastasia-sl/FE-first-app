@@ -6,8 +6,6 @@
   align-items: center;
   gap:50px;
   width:536px;
-  //width: 600px;
-  //height:480px;
   background-color:$black;
   padding: 21px 96px ;
   flex-shrink: 0;
@@ -30,46 +28,41 @@
   input::placeholder {
     padding:8px;
   }
-  .RegButtonDiv{
-    display:flex;
-    flex-direction: column;
-    align-items: center;
-    gap:40px;
-    padding: 10px;
-  }
-  .AccExistDiv{
-    display:flex;
-    gap:6px;
-  }
-  .InputBlock{
-    display:flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
+  //.RegButtonDiv{
+  //  display:flex;
+  //  flex-direction: column;
+  //  align-items: center;
+  //  gap:40px;
+  //  padding: 10px;
+  //}
+  //.AccExistDiv{
+  //  display:flex;
+  //  gap:6px;
+  //}
+  //.InputBlock{
+  //  display:flex;
+  //  flex-direction: column;
+  //  align-items: flex-start;
+  //  gap: 10px;
+  //}
+  //.GoBackLink{
+  //  padding-right: 598px;
+  //  text-decoration:none;
+  //
+  //}
+  //.LogInLink{
+  //  text-decoration:none;
+  //
+  //}
+  .RegLogoImg{
+    width: auto;
+    height:90px;
   }
   .GoBackLink{
-    padding-right: 598px;
-    text-decoration:none;
-
+    display:flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap:100px;
+    padding-left:426px;
   }
-  .LogInLink{
-    text-decoration:none;
-
-  }
-  //.RegLabels{
-  //  display:flex;
-  //  flex-direction: column;
-  //  justify-content: space-around;
-  //  padding-right:50px;
-  //  align-items: flex-start;
-  //}
-  //.InputsBlock{
-  //  display:flex;
-  //  flex-direction: column;
-  //  gap:30px;
-  //}
-  //.RegBlock{
-  //  display:flex;
-  //  padding-right: 140px;
-  //}
 }

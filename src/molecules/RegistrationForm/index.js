@@ -6,6 +6,7 @@ import Button from "../../atoms/Button";
 import {Link, useNavigate} from "react-router-dom";
 import axios from 'axios';
 import InputLabel from "../../atoms/FormInputLabel";
+import WSLogo from "../../atoms/icons/WS_logo.png";
 
 const initialFormData = {
     username: '',
@@ -19,14 +20,6 @@ function RegistrationForm() {
     const [error, setError] = useState(null);
     const navigate = useNavigate();
 
-
-    // const handleChange = useCallback((event) => {
-    //     const { name, value } = event.target;
-    //     setFormData({
-    //         ...formData,
-    //         [name]: value,
-    //     });
-    // }, []);
     const handleChange = (event) => {
         const { name, value } = event.target;
         setFormData({
@@ -63,12 +56,13 @@ function RegistrationForm() {
     return (
         <div>
             <form className='FormBlock' onSubmit={handleSubmit}>
-                <Link to="/home" className="GoBackLink">
-                    <Typography fontWeight='body3' fontSize='title2'>Back</Typography>
-                </Link>
+
+                    <Link to="/home" className="GoBackLink">
+                        <Typography fontWeight='body3' fontSize='title2'>Back</Typography>
+                        <img src={WSLogo} className='RegLogoImg'/>
+                    </Link>
+
                 <Typography fontWeight='body3' variant='title5' color='white'>Create your account</Typography>
-                {/*<div className='RegBlock'>*/}
-                {/*    <div className='RegLabels'></div>*/}
                 <div className='InputBlock'>
                     <InputLabel title='Username'/>
                     <input
@@ -99,7 +93,6 @@ function RegistrationForm() {
                         onChange={handleChange}
                     />
                 </div>
-                {/*{response && <Typography color='white'>Your account was created</Typography>}*/}
                 {error && <Typography color='white'>There was a problem with creating your account. Try again</Typography>}
                 <div className="RegButtonDiv">
                     <Button onSubmit={handleSubmit} title='Register Account' size='medium' borderRadius='small' backgrndColor='violet'/>
