@@ -58,7 +58,7 @@ function RegistrationForm() {
             <form className='FormBlock' onSubmit={handleSubmit}>
 
                     <Link to="/home" className="GoBackLink">
-                        <Typography fontWeight='body3' fontSize='title2'>Back</Typography>
+                        {/*<Typography fontWeight='body3' fontSize='title2'>Back</Typography>*/}
                         <img src={WSLogo} className='RegLogoImg'/>
                     </Link>
 

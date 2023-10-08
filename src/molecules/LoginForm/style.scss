@@ -9,7 +9,7 @@
   background-color:$black;
   padding: 21px 96px ;
   flex-shrink: 0;
-  border: 1px solid $violet;
+  //border: 1px solid $violet;
 
   .RegButtonDiv{
     display:flex;
@@ -29,7 +29,8 @@
     gap: 10px;
   }
   .GoBackLink{
-    padding-right: 598px;
+    padding-right: 426px;
+    padding-left:426px;
     text-decoration:none;
 
   }

@@ -9,7 +9,7 @@
   background-color:$black;
   padding: 21px 96px ;
   flex-shrink: 0;
-  border: 1px solid $violet;
+  //border: 1px solid $violet;
 
   Input{
     background-color: $black;
@@ -63,6 +63,5 @@
     flex-direction: row;
     align-items: flex-start;
     gap:100px;
-    padding-left:426px;
   }
 }
