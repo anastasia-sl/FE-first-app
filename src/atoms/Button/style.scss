@@ -16,21 +16,22 @@
   text-transform: capitalize;
   color: #2B2B2B;
   position: relative;
+  border:none;
 
-  .Stat{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    top: -12px;
-    right: -12px;
-    width: 24px;
-    height: 24px;
-    font-size: 16px;
-    border-radius: 12px;
-    color: $white;
-    background-color: darkred;
-  }
+  //.Stat{
+  //  display: flex;
+  //  justify-content: center;
+  //  align-items: center;
+  //  position: absolute;
+  //  top: -12px;
+  //  right: -12px;
+  //  width: 24px;
+  //  height: 24px;
+  //  font-size: 16px;
+  //  border-radius: 12px;
+  //  color: $white;
+  //  background-color: darkred;
+  //}
 
   &.BackgroundColorWhite {
     background-color: $white;
