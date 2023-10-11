@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 function InputLabel(props) {
     const {title} = props
     return (
-        <label className='InputLabel'>{title}</label>
+        <label className='InputLabel'>{title} {props.children}</label>
     );
 }
 

@@ -7,11 +7,13 @@ import {Link, useNavigate} from "react-router-dom";
 import axios from 'axios';
 import InputLabel from "../../atoms/FormInputLabel";
 import WSLogo from "../../atoms/icons/WS_logo.png";
+import LogoMain from "../../atoms/icons/LOGOMAIN.png";
 
 const initialFormData = {
     username: '',
     email: '',
     password: '',
+    acceptTC: false,
 };
 
 function RegistrationForm() {
@@ -31,7 +33,7 @@ function RegistrationForm() {
     const handleSubmit = useCallback((event) => {
         event.preventDefault();
         console.log(formData)
-        if (!formData.username || !formData.email || !formData.password) {
+        if (!formData.username || !formData.email || !formData.password || !formData.acceptTC) {
             setError('Please fill in all fields');
             return;
         }
@@ -42,6 +44,7 @@ function RegistrationForm() {
                 setResponse({
                     username: response.data.username,
                     jwtToken: response.data.jwtToken,
+                    acceptTC: response.data.acceptTC,
                 });
                 navigate('/home');
             }
@@ -54,15 +57,17 @@ function RegistrationForm() {
     }, [formData, navigate])
 
     return (
-        <div>
-            <form className='FormBlock' onSubmit={handleSubmit}>
-
-                    <Link to="/home" className="GoBackLink">
-                        {/*<Typography fontWeight='body3' fontSize='title2'>Back</Typography>*/}
-                        <img src={WSLogo} className='RegLogoImg'/>
-                    </Link>
-
+        <div className='FormBlock FormDiv'>
+            <div className='RegLogoBlock'>
+             <Link to="/home" className="GoBackLink">
+                <img src={LogoMain} className='RegLogoImg'/>
+             </Link>
+             <div className='AccCreate'>
                 <Typography fontWeight='body3' variant='title5' color='white'>Create your account</Typography>
+             </div>
+            </div>
+            <form className='FormBlock' onSubmit={handleSubmit}>
+                <div className='InputsDiv'>
                 <div className='InputBlock'>
                     <InputLabel title='Username'/>
                     <input
@@ -93,10 +98,23 @@ function RegistrationForm() {
                         onChange={handleChange}
                     />
                 </div>
+                <div className='CheckboxBlock'>
+                    <InputLabel for="RealCheckbox" >
+                        <span className='CustomCheckbox'></span>
+                        <input
+                            className='RealCheckbox'
+                            type="checkbox"
+                            name="acceptTC"
+                            value={formData.acceptTC}
+                            onChange={handleChange}
+                        />
+                        Accept the terms and conditions
+                    </InputLabel>
+                </div>
+                </div>
                 {error && <Typography color='white'>There was a problem with creating your account. Try again</Typography>}
                 <div className="RegButtonDiv">
                     <Button onSubmit={handleSubmit} title='Register Account' size='medium' borderRadius='small' backgrndColor='violet'/>
-
                 </div>
                 <div className='AccExistDiv'>
                 <Typography fontWeight='body3' fontSize='title2'>Already have an account?</Typography>
