@@ -114,7 +114,7 @@ function RegistrationForm() {
                 </div>
                 {error && <Typography color='white'>There was a problem with creating your account. Try again</Typography>}
                 <div className="RegButtonDiv">
-                    <Button onSubmit={handleSubmit} title='Register Account' size='medium' borderRadius='small' backgrndColor='violet'/>
+                    <Button onSubmit={handleSubmit} title='Register Account' hover='true' size='medium' borderRadius='small' backgrndColor='violet'/>
                 </div>
                 <div className='AccExistDiv'>
                 <Typography fontWeight='body3' fontSize='title2'>Already have an account?</Typography>

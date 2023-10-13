@@ -12,12 +12,8 @@
   gap:24px;
   width:500px;
   background-color:$black;
-  //padding: 21px 96px ;
   flex-shrink: 0;
   border-radius: 60px;
-  //height:;
-  //box-shadow: 0 0 50px #22223f;
-  //border: 1px solid $violet;
 
   Input{
     background-color: $black;
@@ -58,11 +54,6 @@
     align-items: center;
     justify-content: flex-end;
   }
-  //.ServiceTerms{
-  //  width: 28px;
-  //  height:28px;
-  //  align-items: center
-  //}
 
   .RegLogoBlock{
     display: flex;
@@ -116,5 +107,11 @@
     gap: 40px;
     display: flex;
     flex-direction: column;
+  }
+
+  .RegButtonDiv{
+    &:hover{
+
+    }
   }
 }

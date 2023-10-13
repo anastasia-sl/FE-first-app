@@ -7,7 +7,7 @@ import Button from "../../atoms/Button";
 import {Link} from "react-router-dom";
 import axios from 'axios';
 import InputLabel from "../../atoms/FormInputLabel";
-import WSLogo from "../../atoms/icons/WS_logo.png";
+import LogoMain from "../../atoms/icons/LOGOMAIN.png";
 
 const initialFormData = {
     username: '',
@@ -54,11 +54,14 @@ function LoginForm() {
     return (
         <div>
             <form className='FormBlock' onSubmit={handleSubmit}>
-                <Link to="/home" className="GoBackLink">
-                    {/*<Typography fontWeight='body3' fontSize='title2'>Back</Typography>*/}
-                    <img src={WSLogo} className='RegLogoImg'/>
-                </Link>
-                <Typography fontWeight='body3' variant='title5' color='white'>Welcome Back</Typography>
+                <div className='LoginLogoBlock'>
+                    <Link to="/home" className="GoBackLink">
+                        <img src={LogoMain} className='RegLogoImg'/>
+                    </Link>
+                    <div className='WelcomeBackText'>
+                        <Typography fontWeight='body3' variant='title5' color='white'>Welcome Back</Typography>
+                    </div>
+                </div>
                 <div className='InputBlock'>
                     <InputLabel title='Username'/>
                     <input
@@ -83,8 +86,7 @@ function LoginForm() {
                 </div>
                 {error && <Typography color='white'>{error}</Typography>}
                 <div className="RegButtonDiv">
-                    <Button onSubmit={handleSubmit} title='Login' size='medium' borderRadius='small' backgrndColor='violet'/>
-
+                    <Button onSubmit={handleSubmit} hover='true' title='Login' size='medium' borderRadius='small' backgrndColor='violet'/>
                 </div>
                 <div className='AccExistDiv'>
                     <Typography fontWeight='body3' fontSize='title2'>Don't have an account?</Typography>

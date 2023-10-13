@@ -7,9 +7,7 @@
   align-items: center;
   gap:24px;
   background-color:$black;
-  //padding: 21px 96px ;
   flex-shrink: 0;
-  //border: 1px solid $violet;
 
   .RegButtonDiv{
     display:flex;
@@ -28,15 +26,21 @@
     align-items: flex-start;
     gap: 10px;
   }
-  .GoBackLink{
-    //padding-right: 426px;
-    //padding-left:426px;
-    text-decoration:none;
-
-  }
   .LogInLink{
     text-decoration:none;
 
   }
-
+  .WelcomeBackText{
+    padding-left: 140px;
+  }
+  .LoginLogoBlock{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    width:100%;
+    padding-top:30px;
+  }
+  .LoginBtn{
+    color:red;
+  }
 }

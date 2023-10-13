@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import './style.scss';
 import cn from 'classnames';
 function Button (props){
-    const {backgrndColor, textColor, shadow, borderRadius, border, title, font, children, size, stat, ...baseProps} = props;
+    const {backgrndColor, textColor, shadow, borderRadius, border, title, font, children, size, stat, hover, ...baseProps} = props;
 
     return (
         <button className={cn('AppButton', {
@@ -20,7 +20,7 @@ function Button (props){
             'SizeSmall': size === 'small',
             'SizeMedium': size === 'medium',
             'SizeBig': size === 'big',
-            'GabaritoFont': font === 'gabarito',
+            'Hover': hover === 'true'
         })}
                 {...baseProps}>
             {title}
@@ -35,9 +35,9 @@ Button.propTypes = {
     textColor: PropTypes.oneOf(['white', 'black', 'orange']),
     shadow: PropTypes.bool,
     borderRadius: PropTypes.oneOf(['none', 'small', 'big']),
-    font: PropTypes.oneOf(['gabarito']),
     title: PropTypes.string,
     border: PropTypes.string,
+    hover: PropTypes.oneOf(['true', 'false']),
     size: PropTypes.oneOf(['small', 'medium', 'big']),
     stat: PropTypes.shape({
         target: PropTypes.string,
