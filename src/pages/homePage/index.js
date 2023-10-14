@@ -9,6 +9,7 @@ function HomePage() {
                 {/*<Link to="/home">Home</Link>*/}
                 <Link to="/registration">Registration</Link>
                 <Link to="/logIn">LogIn</Link>
+                <Link to="/feedback">Feedback</Link>
             </div>
         </div>
     );

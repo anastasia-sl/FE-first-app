@@ -100,19 +100,21 @@ function RegistrationForm() {
                 </div>
                 <div className='CheckboxBlock'>
                     <InputLabel for="RealCheckbox" >
-                        <span className='CustomCheckbox'></span>
+
                         <input
                             className='RealCheckbox'
+                            // required="required"
                             type="checkbox"
                             name="acceptTC"
                             value={formData.acceptTC}
                             onChange={handleChange}
                         />
+                        <span className='CustomCheckbox'></span>
                         Accept the terms and conditions
                     </InputLabel>
                 </div>
                 </div>
-                {error && <Typography color='white'>There was a problem with creating your account. Try again</Typography>}
+                {error && <Typography color='white'>There was a problem with creating your account. Please try again</Typography>}
                 <div className="RegButtonDiv">
                     <Button onSubmit={handleSubmit} title='Register Account' hover='true' size='medium' borderRadius='small' backgrndColor='violet'/>
                 </div>
