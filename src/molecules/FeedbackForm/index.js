@@ -12,7 +12,8 @@ import LogoMain from "../../atoms/icons/LOGOMAIN.png";
 const initialFormData = {
     username: '',
     feedbackType: '',
-    message: ''
+    message: '',
+    jwtToken: localStorage.getItem('jwtToken'),
 };
 function FeedbackForm() {
     const [formData, setFormData] = useState(initialFormData);
@@ -34,9 +35,8 @@ function FeedbackForm() {
         axios.post('/api/v1/feedbacks', formData).then((response) => {
             if (response.status === 200) {
                 setError('')
-                localStorage.setItem('jwtToken', response.data.username);
+                localStorage.setItem('username', response.data.username);
                 setResponse({
-                    username: response.data.username,
                     feedbackType: response.data.feedbackType,
                     message: response.data.message
                 });
