@@ -76,8 +76,10 @@
     width: 200px;
     font-size: 18px;
     line-height: 19px;
-    font-weight: 700;
+    //font-weight: 700;
+    font-weight: 400;
   }
+ ;
 
   &.SizeBig {
     height: 64px;
@@ -88,9 +90,7 @@
 
   &.Hover{
     &:hover {
-      color: $white;
-      font-weight: 400;
-      width:210px;
+
     }
   }
 }

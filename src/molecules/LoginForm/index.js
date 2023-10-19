@@ -12,6 +12,7 @@ import LogoMain from "../../atoms/icons/LOGOMAIN.png";
 const initialFormData = {
     username: '',
     password: '',
+    deviceType:'WEB'
 };
 function LoginForm() {
     const [formData, setFormData] = useState(initialFormData);
@@ -86,7 +87,7 @@ function LoginForm() {
                 </div>
                 {error && <Typography color='white'>{error}</Typography>}
                 <div className="RegButtonDiv">
-                    <Button onSubmit={handleSubmit} hover='true' title='Login' size='medium' borderRadius='small' backgrndColor='violet'/>
+                    <Button onSubmit={handleSubmit} hover='true' title='Login' textColor='white' size='medium' borderRadius='small' backgrndColor='violet'/>
                 </div>
                 <div className='AccExistDiv'>
                     <Typography fontWeight='body3' fontSize='title2'>Don't have an account?</Typography>
