@@ -7,7 +7,7 @@ import Button from "../../atoms/Button";
 import {Link} from "react-router-dom";
 import axios from 'axios';
 import InputLabel from "../../atoms/FormInputLabel";
-import LogoMain from "../../atoms/icons/LOGOMAIN.png";
+import LogoMain from "../../atoms/icons/logo1.0.svg";
 
 const initialFormData = {
     username: '',

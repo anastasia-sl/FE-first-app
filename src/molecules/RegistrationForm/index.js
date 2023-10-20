@@ -6,14 +6,13 @@ import Button from "../../atoms/Button";
 import {Link, useNavigate} from "react-router-dom";
 import axios from 'axios';
 import InputLabel from "../../atoms/FormInputLabel";
-import WSLogo from "../../atoms/icons/WS_logo.png";
-import LogoMain from "../../atoms/icons/LOGOMAIN.png";
+import LogoMain from "../../atoms/icons/logo1.0.svg";
 
 const initialFormData = {
     username: '',
     email: '',
     password: '',
-    acceptTC: true,
+    acceptTC: false,
     deviceType:'WEB'
 };
 
@@ -21,23 +20,31 @@ function RegistrationForm() {
     const [formData, setFormData] = useState(initialFormData);
     const [response, setResponse] = useState(null);
     const [error, setError] = useState(null);
+    const [unfilledError, setUnfilledError] = useState(null);
     const navigate = useNavigate();
+    const showError = error || unfilledError;
 
     const handleChange = (event) => {
         const { name, value } = event.target;
         setFormData({
             ...formData,
             [name]: value,
+            acceptTC: event.target.checked
         });
     }
 
     const handleSubmit = useCallback((event) => {
         event.preventDefault();
         console.log(formData)
-        if (!formData.username || !formData.email || !formData.password || !formData.acceptTC) {
-            setError('Please fill in all fields');
+        if (!formData.username || !formData.email || !formData.password) {
+            setUnfilledError('unfilled error');
             return;
         }
+        if (!formData.acceptTC) {
+            setError('not checked error');
+            return;
+        }
+
         axios.post('/api/v1/auth/register', formData).then((response) => {
             if (response.status === 201) {
                 localStorage.setItem('username', response.data.username);
@@ -115,7 +122,11 @@ function RegistrationForm() {
                     </InputLabel>
                 </div>
                 </div>
-                {error && <Typography color='white'>There was a problem with creating your account. Please try again</Typography>}
+                {showError && (
+                    <Typography color='white'>
+                        {error ? 'Please accept the terms and conditions' : 'Please fill in all fields'}
+                    </Typography>
+                )}
                 <div className="RegButtonDiv">
                     <Button onSubmit={handleSubmit} title='Register Account' textColor='white' hover='true' size='medium' borderRadius='small' backgrndColor='violet'/>
                 </div>
