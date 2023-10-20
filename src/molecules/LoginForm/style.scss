@@ -1,0 +1,46 @@
+@import '../../colors';
+.FormBlock{
+  display:flex;
+  width: 700px;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  gap:24px;
+  background-color:$black;
+  flex-shrink: 0;
+
+  .RegButtonDiv{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .AccExistDiv{
+    display:flex;
+    gap:6px;
+    padding-bottom: 26px;
+
+  }
+  .InputBlock{
+    display:flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .LogInLink{
+    text-decoration:none;
+
+  }
+  .WelcomeBackText{
+    padding-left: 140px;
+  }
+  .LoginLogoBlock{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    width:100%;
+    padding-top:30px;
+  }
+  .LoginBtn{
+    color:red;
+  }
+}
