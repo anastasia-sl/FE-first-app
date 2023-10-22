@@ -35,7 +35,7 @@ function RegistrationForm() {
 
     const handleSubmit = useCallback((event) => {
         event.preventDefault();
-        console.log(formData)
+        // console.log(formData)
         if (!formData.username || !formData.email || !formData.password) {
             setUnfilledError('unfilled error');
             return;

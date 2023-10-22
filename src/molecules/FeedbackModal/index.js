@@ -10,16 +10,17 @@ import InputLabel from "../../atoms/FormInputLabel";
 import LogoMain from "../../atoms/icons/LOGOMAIN.png";
 
 const initialFormData = {
-    username: '',
+    // username: '',
     feedbackType: '',
     message: '',
     jwtToken: localStorage.getItem('jwtToken'),
 };
-function FeedbackForm() {
+function FeedbackModal({open, setOpen}) {
     const [formData, setFormData] = useState(initialFormData);
     const [response, setResponse] = useState(null);
     const [error, setError] = useState(null);
     const navig = useNavigate();
+    const [openModal, setOpenModal] = useState(false);
 
     const handleChange = (event) => {
         const { name, value } = event.target;
@@ -31,7 +32,7 @@ function FeedbackForm() {
 
     const handleSubmit = useCallback((event) => {
         event.preventDefault();
-        console.log(formData)
+        // console.log(formData)
         axios.post('/api/v1/feedbacks', formData).then((response) => {
             if (response.status === 200) {
                 setError('')
@@ -51,27 +52,33 @@ function FeedbackForm() {
     }, [formData, navig])
 
 
+    if(!open) return null
+
     return (
-            <form className='FormBlock' onSubmit={handleSubmit}>
-                <div className=''>
+        <div className='Overlay'>
+            <form className='FeedbackModalContainer' onSubmit={handleSubmit}>
+                <div className='FeedbackLogoBlock'>
                     <Link to="/home" className="GoBackLink">
                         <img src={LogoMain} className='FeedbackLogoImg'/>
                     </Link>
+                    <div className='FeedbackModalTitle'>
+                        <Typography fontWeight='body3' variant='title5' color='white'>Send us your feedback!</Typography>
+                    </div>
                 </div>
-                <div className='InputBlock'>
-                    <InputLabel title='Username'/>
-                    <input
-                        type="text"
-                        placeholder="Enter username"
-                        name="username"
-                        value={formData.username}
-                        onChange={handleChange}
-                        autoComplete="current-username"
-                    />
-                </div>
+                {/*<div className='InputBlock'>*/}
+                {/*    <InputLabel title='Username'/>*/}
+                {/*    <input*/}
+                {/*        type="text"*/}
+                {/*        placeholder="Enter username"*/}
+                {/*        name="username"*/}
+                {/*        value={formData.username}*/}
+                {/*        onChange={handleChange}*/}
+                {/*        autoComplete="current-username"*/}
+                {/*    />*/}
+                {/*</div>*/}
                 <div className='InputBlock'>
                     <InputLabel title='Message'/>
-                    <input
+                    <textarea
                         type="text"
                         placeholder="Feedback"
                         name="message"
@@ -79,8 +86,9 @@ function FeedbackForm() {
                         onChange={handleChange}
                     />
                 </div>
-                <div className=''>
-                    <select name="feedbackType" required="required">
+                <div className='feedbackSelection'>
+                    <InputLabel title='Choose a feedback type '/>
+                    <select name="feedbackType" required="required" onChange={handleChange}>
                         <option value="">Choose a feedback type</option>
                         <option value={formData.feedbackType}>Bug Report</option>
                         <option value={formData.feedbackType}>Feature request</option>
@@ -91,11 +99,12 @@ function FeedbackForm() {
                     </select>
                 </div>
                 {error && <Typography color='white'>{error}</Typography>}
-                <div className="RegButtonDiv">
+                <div className="SendFeedbackButton">
                     <Button onSubmit={handleSubmit} hover='true' title='Send' size='medium' borderRadius='big' backgrndColor='violet'/>
                 </div>
             </form>
+        </div>
     );
 }
 
-export default memo(FeedbackForm);
+export default memo(FeedbackModal);

@@ -67,10 +67,6 @@
   }
   .RealCheckbox{
     display: none;
-    //width: 0;
-    //height: 0;
-    //position: absolute;
-    //z-index: -1;
   }
   .CustomCheckbox{
     position: relative;
@@ -109,11 +105,5 @@
     gap: 40px;
     display: flex;
     flex-direction: column;
-  }
-
-  .RegButtonDiv{
-    &:hover{
-
-    }
   }
 }

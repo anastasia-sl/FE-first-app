@@ -30,7 +30,7 @@ function LoginForm() {
 
     const handleSubmit = useCallback((event) => {
         event.preventDefault();
-        console.log(formData)
+        // console.log(formData)
         axios.post('/api/v1/auth/login', formData).then((response) => {
             if (response.status === 200) {
                 setError('')
