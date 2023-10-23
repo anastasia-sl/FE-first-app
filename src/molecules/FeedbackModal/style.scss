@@ -6,6 +6,10 @@
   display: grid;
   place-items: center;
   position: fixed;
+  transform: scale(0);
+}
+OverlayActive {
+  transform: scale(1);
 }
 
 .FeedbackModalContainer{

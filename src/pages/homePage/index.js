@@ -5,7 +5,7 @@ import React, {useState} from "react";
 import FeedbackModal from "../../molecules/FeedbackModal";
 
 function HomePage() {
-    const [openModal, setOpenModal] = useState(true);
+    const [modalActive, setModalActive] = useState(false);
 
     return (
         <div>
@@ -14,8 +14,8 @@ function HomePage() {
                 {/*<Link to="/home">Home</Link>*/}
                 <Link to="/registration">Registration</Link>
                 <Link to="/logIn">LogIn</Link>
-                <Button title='Leave your feedback' onClick={() => setOpenModal(true)} />
-                <FeedbackModal open={openModal} setOpen={setOpenModal}/>
+                <Button title='Leave your feedback' onClick={() => setModalActive(true)} backgrndColor='violet' borderRadius='small' hover='true' size='medium' textColor='white'/>
+                <FeedbackModal active={modalActive} setActive={setModalActive}/>
             </div>
         </div>
     );

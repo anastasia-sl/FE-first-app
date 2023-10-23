@@ -15,12 +15,11 @@ const initialFormData = {
     message: '',
     jwtToken: localStorage.getItem('jwtToken'),
 };
-function FeedbackModal({open, setOpen}) {
+function FeedbackModal({active, setActive}) {
     const [formData, setFormData] = useState(initialFormData);
     const [response, setResponse] = useState(null);
     const [error, setError] = useState(null);
     const navig = useNavigate();
-    const [openModal, setOpenModal] = useState(false);
 
     const handleChange = (event) => {
         const { name, value } = event.target;
@@ -51,12 +50,9 @@ function FeedbackModal({open, setOpen}) {
         setFormData(initialFormData);
     }, [formData, navig])
 
-
-    if(!open) return null
-
     return (
-        <div className='Overlay'>
-            <form className='FeedbackModalContainer' onSubmit={handleSubmit}>
+        <div className={active ? "OverlayActive" : "Overlay"} onClick={() => setActive(false)}>
+            <form className='FeedbackModalContainer' onSubmit={handleSubmit} onClick={e => e.stopPropagation()}>
                 <div className='FeedbackLogoBlock'>
                     <Link to="/home" className="GoBackLink">
                         <img src={LogoMain} className='FeedbackLogoImg'/>
@@ -79,8 +75,7 @@ function FeedbackModal({open, setOpen}) {
                 <div className='InputBlock'>
                     <InputLabel title='Message'/>
                     <textarea
-                        type="text"
-                        placeholder="Feedback"
+                        placeholder="Leave your feedback"
                         name="message"
                         value={formData.message}
                         onChange={handleChange}
@@ -100,7 +95,7 @@ function FeedbackModal({open, setOpen}) {
                 </div>
                 {error && <Typography color='white'>{error}</Typography>}
                 <div className="SendFeedbackButton">
-                    <Button onSubmit={handleSubmit} hover='true' title='Send' size='medium' borderRadius='big' backgrndColor='violet'/>
+                    <Button onSubmit={handleSubmit} onClick={() => setActive(false)}  hover='true' title='Send' size='medium' borderRadius='small' backgrndColor='violet' textColor='white'/>
                 </div>
             </form>
         </div>
