@@ -8,6 +8,7 @@ import {Link} from "react-router-dom";
 import axios from 'axios';
 import InputLabel from "../../atoms/FormInputLabel";
 import LogoMain from "../../atoms/icons/LOGOMAIN.png";
+import ArrowIcon from "../../atoms/icons/arrow icon.svg";
 
 const initialFormData = {
     // username: '',
@@ -34,6 +35,7 @@ function FeedbackModal({active, setActive}) {
         // console.log(formData)
         axios.post('/api/v1/feedbacks', formData).then((response) => {
             if (response.status === 200) {
+                setActive(false)
                 setError('')
                 localStorage.setItem('username', response.data.username);
                 setResponse({
@@ -54,9 +56,9 @@ function FeedbackModal({active, setActive}) {
         <div className={active ? "OverlayActive" : "Overlay"} onClick={() => setActive(false)}>
             <form className='FeedbackModalContainer' onSubmit={handleSubmit} onClick={e => e.stopPropagation()}>
                 <div className='FeedbackLogoBlock'>
-                    <Link to="/home" className="GoBackLink">
+                    <div className="GoBackLink">
                         <img src={LogoMain} className='FeedbackLogoImg'/>
-                    </Link>
+                    </div>
                     <div className='FeedbackModalTitle'>
                         <Typography fontWeight='body3' variant='title5' color='white'>Send us your feedback!</Typography>
                     </div>
@@ -81,21 +83,21 @@ function FeedbackModal({active, setActive}) {
                         onChange={handleChange}
                     />
                 </div>
-                <div className='feedbackSelection'>
+                <div className='FeedbackSelection'>
                     <InputLabel title='Choose a feedback type '/>
-                    <select name="feedbackType" required="required" onChange={handleChange}>
-                        <option value="">Choose a feedback type</option>
-                        <option value={formData.feedbackType}>Bug Report</option>
-                        <option value={formData.feedbackType}>Feature request</option>
-                        <option value={formData.feedbackType}>Usability Feedback</option>
-                        <option value={formData.feedbackType}>General Inquiry</option>
-                        <option value={formData.feedbackType}>Security Feedback</option>
-                        <option value={formData.feedbackType}>Other</option>
-                    </select>
+                        <select name="feedbackType" required="required" onChange={handleChange} className='Select'>
+                            <option value="" disabled selected>Feedback type</option>
+                            <option value={formData.feedbackType} >Bug Report</option>
+                            <option value={formData.feedbackType}>Feature request</option>
+                            <option value={formData.feedbackType}>Usability Feedback</option>
+                            <option value={formData.feedbackType}>General Inquiry</option>
+                            <option value={formData.feedbackType}>Security Feedback</option>
+                            <option value={formData.feedbackType}>Other</option>
+                        </select>
                 </div>
                 {error && <Typography color='white'>{error}</Typography>}
                 <div className="SendFeedbackButton">
-                    <Button onSubmit={handleSubmit} onClick={() => setActive(false)}  hover='true' title='Send' size='medium' borderRadius='small' backgrndColor='violet' textColor='white'/>
+                    <Button onSubmit={handleSubmit} hover='true' title='Send' size='medium' borderRadius='small' backgrndColor='violet' textColor='white'/>
                 </div>
             </form>
         </div>

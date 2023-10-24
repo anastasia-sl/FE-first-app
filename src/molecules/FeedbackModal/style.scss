@@ -1,7 +1,7 @@
 @import '../../colors';
 
 .Overlay{
-  height: 85vh;
+  height: 100vh;
   width:100vw;
   display: grid;
   place-items: center;
@@ -34,13 +34,24 @@ OverlayActive {
     flex-shrink: 0;
     border: 1px solid $white;
     border-radius: 12px;
-    padding: 0 0 0 12px;
+    padding: 12px 0 0 12px;
 
     &:hover {
       border-color: $violet;
     }
   }
-
+  textarea::placeholder {
+    font-family: 'Inter', sans-serif;
+  }
+  textarea::-webkit-scrollbar {
+    display:none;
+  }
+  textarea::-webkit-scrollbar-track {
+    display:none;
+  }
+  textarea::-webkit-scrollbar-thumb {
+    display:none;
+  }
 
   .FeedbackLogoBlock{
     display: flex;
@@ -63,21 +74,11 @@ OverlayActive {
     flex-direction: column;
     align-items: center;
   }
-  .AccExistDiv{
-    display:flex;
-    gap:6px;
-    padding-bottom: 26px;
-
-  }
   .InputBlock{
     display:flex;
     flex-direction: column;
     align-items: flex-start;
     gap: 10px;
-  }
-  .LogInLink{
-    text-decoration:none;
-
   }
   .FeedbackModalTitle{
     padding-left: 100px;
@@ -90,5 +91,40 @@ OverlayActive {
     display:flex;
     flex-direction: column;
     align-items: center;
+    padding-bottom: 30px;
   }
-}
+  .FeedbackSelection{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-right: 237px;
+    align-items: flex-start;
+  }
+  .Select{
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    border: $white solid 1px;
+    outline: none;
+    background-color:$black;
+    color: $lightGrey;
+    border-radius: 12px;
+    padding: 0 0 0 12px;
+    width: 200px;
+    height: 60px;
+    font-weight: 400;
+    font-size: 16px;
+    cursor: pointer;
+
+    &:hover {
+      border: $violet solid 1px;
+    }
+    &:focus{
+      outline: none;
+      color: $white;
+    }
+  }
+  .Select::-ms-expand{
+    display: none;
+  }
+ }
