@@ -48,10 +48,10 @@ function RegistrationForm() {
         axios.post('/api/v1/auth/register', formData).then((response) => {
             if (response.status === 201) {
                 localStorage.setItem('username', response.data.username);
-                localStorage.setItem('jwtToken', response.data.jwtToken);
+                localStorage.setItem('jwtToken', response.data.jwt);
                 setResponse({
                     username: response.data.username,
-                    jwtToken: response.data.jwtToken,
+                    jwt: response.data.jwt,
                     acceptTC: response.data.acceptTC,
                 });
                 navigate('/home');
@@ -106,21 +106,20 @@ function RegistrationForm() {
                         onChange={handleChange}
                     />
                 </div>
-                <div className='CheckboxBlock'>
-                    <InputLabel for="RealCheckbox" >
-
-                        <input
+                    <div className='CheckboxBlock'>
+                        <InputLabel for="RealCheckbox" >
+                          <input
                             className='RealCheckbox'
                             // required="required"
                             type="checkbox"
                             name="acceptTC"
                             value={formData.acceptTC}
                             onChange={handleChange}
-                        />
-                        <span className='CustomCheckbox'></span>
-                        Accept the terms and conditions
-                    </InputLabel>
-                </div>
+                          />
+                            <span className='CustomCheckbox'></span>
+                            Accept the terms and conditions
+                        </InputLabel>
+                    </div>
                 </div>
                 {showError && (
                     <Typography color='white'>
