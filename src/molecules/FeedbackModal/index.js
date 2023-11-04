@@ -6,14 +6,13 @@ import Button from "../../atoms/Button";
 import axios from 'axios';
 import InputLabel from "../../atoms/FormInputLabel";
 import LogoMain from "../../atoms/icons/LOGOMAIN.png";
-import CustomSelect from "../../atoms/CustomSelect";
 
 const initialFormData = {
     feedbackType: '',
     message: '',
     jwt: localStorage.getItem('jwtToken'),
 };
-function FeedbackModal({active, setActive}) {
+function FeedbackModal({active, setActive}, { options, onChange }) {
     const [formData, setFormData] = useState(initialFormData);
     const [response, setResponse] = useState(null);
     const [error, setError] = useState(null);
@@ -84,8 +83,8 @@ function FeedbackModal({active, setActive}) {
                         <InputLabel title='Choose a feedback type '/>
                         <div className='SelectWrapper'>
                             <select name="feedbackType" required="required" onChange={handleChange} className='Select'>
-                                <option value="" disabled selected>Feedback type </option>
-                                <option value="BUG_REPORT">Bug Report</option>
+                                <option value="" data-style="option-style-1" disabled selected>Feedback type </option>
+                                <option value="BUG_REPORT" >Bug Report</option>
                                 <option value="FEATURE_REQUEST">Feature request</option>
                                 <option value="USABILITY_FEEDBACK">Usability Feedback</option>
                                 <option value="GENERAL_INQUIRY">General Inquiry</option>
@@ -93,12 +92,8 @@ function FeedbackModal({active, setActive}) {
                                 <option value="OTHER">Other</option>
                             </select>
                             <i className='ArrowIcon' aria-hidden='true'></i>
-                            {/*<div className='CustomSelect'>*/}
-                            {/*    */}
-                            {/*</div>*/}
                         </div>
                     </div>
-                    <CustomSelect/>
                     {error && <Typography color='white'>{error}</Typography>}
                     <div className="SendFeedbackButton">
                         <Button onSubmit={handleSubmit} active={gratefulWindow} setActive={setGratefulWindow} hover='true' title='Send' size='medium' borderRadius='small' backgrndColor='violet' textColor='white'/>

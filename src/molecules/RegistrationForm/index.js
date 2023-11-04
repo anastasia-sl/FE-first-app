@@ -7,6 +7,8 @@ import {Link, useNavigate} from "react-router-dom";
 import axios from 'axios';
 import InputLabel from "../../atoms/FormInputLabel";
 import LogoMain from "../../atoms/icons/logo1.0.svg";
+import { observer } from 'mobx-react-lite';
+import userStore from "../../store";
 
 const initialFormData = {
     username: '',
@@ -35,7 +37,7 @@ function RegistrationForm() {
 
     const handleSubmit = useCallback((event) => {
         event.preventDefault();
-        // console.log(formData)
+        console.log(formData)
         if (!formData.username || !formData.email || !formData.password) {
             setUnfilledError('unfilled error');
             return;
@@ -49,11 +51,13 @@ function RegistrationForm() {
             if (response.status === 201) {
                 localStorage.setItem('username', response.data.username);
                 localStorage.setItem('jwtToken', response.data.jwt);
+                userStore.login(response.data.jwt);
                 setResponse({
                     username: response.data.username,
                     jwt: response.data.jwt,
                     acceptTC: response.data.acceptTC,
                 });
+
                 navigate('/home');
             }
         })
@@ -63,6 +67,7 @@ function RegistrationForm() {
             });
         setFormData(initialFormData);
     }, [formData, navigate])
+
 
     return (
         <div className='FormBlock FormDiv'>
@@ -140,4 +145,4 @@ function RegistrationForm() {
     );
 }
 
-export default memo(RegistrationForm);
+export default memo(observer(RegistrationForm));
