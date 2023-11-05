@@ -1,20 +1,27 @@
 import React from "react";
-import {useState, useMemo, useCallback, memo} from "react";
+import {memo} from "react";
 import './style.scss';
 import Typography from "../../atoms/Typography";
-import Button from "../../atoms/Button";
+import { observer } from 'mobx-react-lite';
+import userStore from "../../store";
+import {ReactComponent as CheckIcon} from '../../atoms/icons/checkIcon.svg';
 
-function GratefulWindow({active, setActive}) {
+function GratefulWindow() {
 
     return (
-        <div className={active ? "OverlayActive" : "Overlay"} onClick={() => setActive(false)}>
-            <form className='FeedbackGratefulWindow' onClick={e => e.stopPropagation()}>
-                <div className='GratefulWindowContent'>
-
+        // <div className='Overlay'>
+        <div className='FeedbackGratefulWindow'>
+            <div className='GratefulWindowContent'>
+                <div className='CheckIconBlock'>
+                    <CheckIcon className='CheckIcon'/>
                 </div>
-            </form>
+                <Typography color='white' fontWeight='body3' variant='title6'>
+                    Thank you {userStore.username} for your feedback!
+                </Typography>
+            </div>
         </div>
+        // </div>
     );
 }
 
-export default memo(GratefulWindow);
+export default memo(observer(GratefulWindow));

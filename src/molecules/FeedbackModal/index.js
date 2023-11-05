@@ -6,38 +6,48 @@ import Button from "../../atoms/Button";
 import axios from 'axios';
 import InputLabel from "../../atoms/FormInputLabel";
 import LogoMain from "../../atoms/icons/LOGOMAIN.png";
+import { observer } from 'mobx-react-lite';
+import userStore from "../../store";
+import GratefulWindow from "../GratefulWindow";
 
 const initialFormData = {
     feedbackType: '',
     message: '',
     jwt: localStorage.getItem('jwtToken'),
 };
-function FeedbackModal({active, setActive}, { options, onChange }) {
+function FeedbackModal({active, setActive}) {
     const [formData, setFormData] = useState(initialFormData);
     const [response, setResponse] = useState(null);
     const [error, setError] = useState(null);
-    const [gratefulWindow, setGratefulWindow] = useState(true);
 
     const handleChange = (event) => {
         const { name, value } = event.target;
         setFormData({
-            ...formData,
+            ...FormData,
             [name]: value,
         });
     }
 
     const handleSubmit = useCallback((event) => {
         event.preventDefault();
-        // console.log(formData)
+        // if (!formData.message || !formData.feedbackType) {
+        //     setError('error');
+        //     return;
+        // }
         axios.post('/api/v1/feedbacks', formData).then((response) => {
+            console.log(formData)
             if (response.status === 200) {
-                setActive(false)
-                setError('')
-                localStorage.setItem('username', response.data.username);
+                sessionStorage.setItem('feedbackType', response.data.feedbackType);
+                sessionStorage.setItem('message', response.data.message);
+                // setActive(false)
+                setError(null)
+
                 setResponse({
-                    feedbackType: response.data.feedbackType,
-                    message: response.data.message
+                    feedbackId: response.data.feedbackId,
+                    userId: response.data.userId,
+                    status: response.data.status
                 });
+                return <GratefulWindow />
             }
         })
             .catch((error) => {
@@ -59,23 +69,13 @@ function FeedbackModal({active, setActive}, { options, onChange }) {
                             <Typography fontWeight='body3' variant='title5' color='white'>Send us your feedback!</Typography>
                         </div>
                     </div>
-                    {/*<div className='InputBlock'>*/}
-                    {/*    <InputLabel title='Username'/>*/}
-                    {/*    <input*/}
-                    {/*        type="text"*/}
-                    {/*        placeholder="Enter username"*/}
-                    {/*        name="username"*/}
-                    {/*        value={formData.username}*/}
-                    {/*        onChange={handleChange}*/}
-                    {/*        autoComplete="current-username"*/}
-                    {/*    />*/}
-                    {/*</div>*/}
                     <div className='InputBlock'>
                         <InputLabel title='Message'/>
                         <textarea
                             placeholder="Leave your feedback"
                             name="message"
                             value={formData.message}
+                            required
                             onChange={handleChange}
                         />
                     </div>
@@ -96,7 +96,7 @@ function FeedbackModal({active, setActive}, { options, onChange }) {
                     </div>
                     {error && <Typography color='white'>{error}</Typography>}
                     <div className="SendFeedbackButton">
-                        <Button onSubmit={handleSubmit} active={gratefulWindow} setActive={setGratefulWindow} hover='true' title='Send' size='medium' borderRadius='small' backgrndColor='violet' textColor='white'/>
+                        <Button onSubmit={handleSubmit} hover='true' title='Send' size='medium' borderRadius='small' backgrndColor='violet' textColor='white'/>
                     </div>
                 </div>
             </form>
@@ -104,4 +104,4 @@ function FeedbackModal({active, setActive}, { options, onChange }) {
     );
 }
 
-export default memo(FeedbackModal);
+export default memo(observer(FeedbackModal));

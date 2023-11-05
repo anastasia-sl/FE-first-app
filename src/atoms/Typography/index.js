@@ -11,12 +11,14 @@ function Typography (props){
             'SizeTitle3': variant === 'title3',
             'SizeTitle4': variant === 'title4',
             'SizeTitle5': variant === 'title5',
+            'SizeTitle6': variant === 'title6',
             'FontWeightBody1': fontWeight === 'body1',
             'FontWeightBody2': fontWeight === 'body2',
             'FontWeightBody3': fontWeight === 'body3',
             'FontWeightBody4': fontWeight === 'body4',
             'TextColorWhite': color === 'white',
             'TextColorBlack': color === 'black',
+            'TextColorViolet': color === 'violet',
             'TextColorLightGrey': color === 'lightGrey',
             'TextColorDarkGrey': color === 'darkGrey',
             'NoFilling': filling === 'none',
@@ -32,7 +34,7 @@ function Typography (props){
 Typography.propTypes = {
     fontWeight:PropTypes.string,
     variant: PropTypes.string,
-    color: PropTypes.oneOf(['white', 'black', 'lightGrey', 'darkGrey']),
+    color: PropTypes.oneOf(['white', 'black', 'lightGrey', 'darkGrey', 'violet']),
     filling: PropTypes.oneOf(['none', 'white', 'grey', 'black']),
     textCase: PropTypes.oneOf(['lower', 'normal', 'upper']),
 }
