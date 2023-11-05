@@ -34,12 +34,12 @@ function LoginForm() {
         axios.post('/api/v1/auth/login', formData).then((response) => {
             if (response.status === 200) {
                 setError('')
-                localStorage.setItem('jwtToken', response.data.jwtToken);
+                localStorage.setItem('jwtToken', response.data.jwt);
                 setResponse({
                     username: response.data.username,
                     email: response.data.email,
                     userRole: response.data.userRole,
-                    jwtToken: response.data.jwtToken,
+                    jwtToken: response.data.jwt,
                 });
                 navig('/home');
             }

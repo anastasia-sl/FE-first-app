@@ -13,7 +13,6 @@ import GratefulWindow from "../GratefulWindow";
 const initialFormData = {
     feedbackType: '',
     message: '',
-    jwt: localStorage.getItem('jwtToken'),
 };
 function FeedbackModal({active, setActive}) {
     const [formData, setFormData] = useState(initialFormData);
@@ -23,7 +22,7 @@ function FeedbackModal({active, setActive}) {
     const handleChange = (event) => {
         const { name, value } = event.target;
         setFormData({
-            ...FormData,
+            ...formData,
             [name]: value,
         });
     }
@@ -34,7 +33,11 @@ function FeedbackModal({active, setActive}) {
         //     setError('error');
         //     return;
         // }
-        axios.post('/api/v1/feedbacks', formData).then((response) => {
+        axios.post('/api/v1/feedbacks', formData, {
+            headers:{
+                Authorization: 'Bearer ' + localStorage.getItem('jwtToken')
+            }
+        }).then((response) => {
             console.log(formData)
             if (response.status === 200) {
                 sessionStorage.setItem('feedbackType', response.data.feedbackType);
@@ -82,8 +85,8 @@ function FeedbackModal({active, setActive}) {
                     <div className='FeedbackSelection'>
                         <InputLabel title='Choose a feedback type '/>
                         <div className='SelectWrapper'>
-                            <select name="feedbackType" required="required" onChange={handleChange} className='Select'>
-                                <option value="" data-style="option-style-1" disabled selected>Feedback type </option>
+                            <select name="feedbackType" required="required" onChange={handleChange} className='Select' defaultValue={"default"}>
+                                <option value="default" data-style="option-style-1" disabled>Feedback type </option>
                                 <option value="BUG_REPORT" >Bug Report</option>
                                 <option value="FEATURE_REQUEST">Feature request</option>
                                 <option value="USABILITY_FEEDBACK">Usability Feedback</option>
@@ -91,7 +94,7 @@ function FeedbackModal({active, setActive}) {
                                 <option value="SECURITY_FEEDBACK">Security Feedback</option>
                                 <option value="OTHER">Other</option>
                             </select>
-                            <i className='ArrowIcon' aria-hidden='true'></i>
+                            
                         </div>
                     </div>
                     {error && <Typography color='white'>{error}</Typography>}
