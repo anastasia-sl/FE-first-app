@@ -8,7 +8,8 @@
   position: fixed;
   transform: scale(0);
 }
-OverlayActive {
+.OverlayActive {
+  height:100vh;
   transform: scale(1);
 }
 

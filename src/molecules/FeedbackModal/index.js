@@ -7,7 +7,6 @@ import axios from 'axios';
 import InputLabel from "../../atoms/FormInputLabel";
 import LogoMain from "../../atoms/icons/LOGOMAIN.png";
 import { observer } from 'mobx-react-lite';
-import userStore from "../../store";
 import GratefulWindow from "../GratefulWindow";
 
 const initialFormData = {
@@ -18,6 +17,7 @@ function FeedbackModal({active, setActive}) {
     const [formData, setFormData] = useState(initialFormData);
     const [response, setResponse] = useState(null);
     const [error, setError] = useState(null);
+    const [isGratefulWindowOpen, setIsGratefulWindowOpen] = useState(false);
 
     const handleChange = (event) => {
         const { name, value } = event.target;
@@ -39,18 +39,19 @@ function FeedbackModal({active, setActive}) {
             }
         }).then((response) => {
             console.log(formData)
-            if (response.status === 200) {
-                sessionStorage.setItem('feedbackType', response.data.feedbackType);
+            if (response.status === 201) {
+                setIsGratefulWindowOpen(true);
+                setActive(false);
+                localStorage.setItem('feedbackType', response.data.feedbackType);
                 sessionStorage.setItem('message', response.data.message);
-                // setActive(false)
                 setError(null)
+
 
                 setResponse({
                     feedbackId: response.data.feedbackId,
                     userId: response.data.userId,
                     status: response.data.status
-                });
-                return <GratefulWindow />
+                })
             }
         })
             .catch((error) => {
@@ -58,9 +59,11 @@ function FeedbackModal({active, setActive}) {
                 setError('Something went wrong. Please try again.');
             });
         setFormData(initialFormData);
+
+
     }, [formData])
 
-    return (
+    return (<>
         <div className={active ? "OverlayActive" : "Overlay"} onClick={() => setActive(false)}>
             <form className='FeedbackModalContainer' onSubmit={handleSubmit} onClick={e => e.stopPropagation()}>
                 <div className='FeedbackModalContent'>
@@ -94,16 +97,20 @@ function FeedbackModal({active, setActive}) {
                                 <option value="SECURITY_FEEDBACK">Security Feedback</option>
                                 <option value="OTHER">Other</option>
                             </select>
-                            
+
                         </div>
                     </div>
                     {error && <Typography color='white'>{error}</Typography>}
                     <div className="SendFeedbackButton">
                         <Button onSubmit={handleSubmit} hover='true' title='Send' size='medium' borderRadius='small' backgrndColor='violet' textColor='white'/>
                     </div>
+
                 </div>
             </form>
         </div>
+            {isGratefulWindowOpen && (
+                <GratefulWindow activeGrateful={isGratefulWindowOpen} setActiveGrateful={setIsGratefulWindowOpen} onClose={() => setIsGratefulWindowOpen(false)} /> // Передайте функцію для закриття GratefulWindow
+            )}        </>
     );
 }
 

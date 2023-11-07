@@ -58,7 +58,7 @@ function RegistrationForm() {
                     acceptTC: response.data.acceptTC,
                 });
 
-                navigate('/home');
+                navigate('/main');
             }
         })
             .catch((error) => {

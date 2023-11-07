@@ -1,11 +1,21 @@
 @import '../../colors';
-
+.Overlay{
+  height: 100vh;
+  width:100vw;
+  display: grid;
+  place-items: center;
+  position: fixed;
+  transform: scale(0);
+}
+.OverlayActive {
+  transform: scale(1);
+}
 .FeedbackGratefulWindow{
   display: block;
   position: relative;
   margin-left: auto;
   margin-right: auto;
-  background-color:$black;
+  background-color:$darkGrey;
   flex-shrink: 0;
   border-radius: 60px;
   width: 400px;

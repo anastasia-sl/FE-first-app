@@ -41,7 +41,7 @@ function LoginForm() {
                     userRole: response.data.userRole,
                     jwtToken: response.data.jwt,
                 });
-                navig('/home');
+                navig('/main');
             }
         })
             .catch((error) => {
