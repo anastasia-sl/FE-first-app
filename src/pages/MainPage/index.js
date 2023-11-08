@@ -1,11 +1,10 @@
 import './style.scss';
-import {useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import Button from "../../atoms/Button";
 import React, {useState} from "react";
 import FeedbackModal from "../../molecules/FeedbackModal";
 import { observer } from 'mobx-react-lite';
 import userStore from "../../store";
-import Typography from "../../atoms/Typography";
 
 function MainPage() {
     const [modalActive, setModalActive] = useState(false);
@@ -17,7 +16,6 @@ function MainPage() {
         const currentTime = Date.now() / 1000;
 
         if (tokenData.exp && tokenData.exp < currentTime) {
-            <Typography>Please create new account or login</Typography>
             navigate('/home');
 
         }

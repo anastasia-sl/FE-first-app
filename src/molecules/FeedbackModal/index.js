@@ -110,7 +110,8 @@ function FeedbackModal({active, setActive}) {
         </div>
             {isGratefulWindowOpen && (
                 <GratefulWindow activeGrateful={isGratefulWindowOpen} setActiveGrateful={setIsGratefulWindowOpen} onClose={() => setIsGratefulWindowOpen(false)} /> // Передайте функцію для закриття GratefulWindow
-            )}        </>
+            )}
+        </>
     );
 }
 
