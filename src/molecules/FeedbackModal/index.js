@@ -1,5 +1,5 @@
 import React from "react";
-import {useState, useMemo, useCallback, memo} from "react";
+import {useState, useCallback, memo} from "react";
 import './style.scss';
 import Typography from "../../atoms/Typography";
 import Button from "../../atoms/Button";
@@ -42,8 +42,6 @@ function FeedbackModal({active, setActive}) {
             if (response.status === 201) {
                 setIsGratefulWindowOpen(true);
                 setActive(false);
-                localStorage.setItem('feedbackType', response.data.feedbackType);
-                sessionStorage.setItem('message', response.data.message);
                 setError(null)
 
 
@@ -97,7 +95,6 @@ function FeedbackModal({active, setActive}) {
                                 <option value="SECURITY_FEEDBACK">Security Feedback</option>
                                 <option value="OTHER">Other</option>
                             </select>
-
                         </div>
                     </div>
                     {error && <Typography color='white'>{error}</Typography>}

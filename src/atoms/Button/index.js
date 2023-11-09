@@ -17,10 +17,12 @@ function Button (props){
             'NoBorder': border === 'noBorder',
             'BorderRadiusSmall': borderRadius === 'small',
             'BorderRadiusBig': borderRadius === 'big',
+            'BorderRadiusCircle': borderRadius === 'circle',
             'SizeSmall': size === 'small',
             'SizeMedium': size === 'medium',
             'SizeBig': size === 'big',
-            'Hover': hover === 'true'
+            'Hover': hover === 'true',
+            'HoverCircle': hover === 'hoverCircle',
         })}
                 {...baseProps}>
             {title}
@@ -34,7 +36,7 @@ Button.propTypes = {
     backgrndColor:PropTypes.oneOf(['white', 'violet', 'none']),
     textColor: PropTypes.oneOf(['white', 'black', 'orange']),
     shadow: PropTypes.bool,
-    borderRadius: PropTypes.oneOf(['none', 'small', 'big']),
+    borderRadius: PropTypes.oneOf(['none', 'small', 'big', 'circle']),
     title: PropTypes.string,
     border: PropTypes.string,
     hover: PropTypes.oneOf(['true', 'false']),
@@ -50,12 +52,7 @@ Button.defaultProps = {
     textColor:'black',
     shadow: false,
     borderRadius:'none',
-    size: 'medium',
-    stat:{
-        target:null,
-        eventType:null,
-        count: null
-    },
+    // size: 'medium',
 }
 
 

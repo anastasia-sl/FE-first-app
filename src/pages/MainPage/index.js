@@ -1,10 +1,12 @@
 import './style.scss';
-import {Link, useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import Button from "../../atoms/Button";
 import React, {useState} from "react";
 import FeedbackModal from "../../molecules/FeedbackModal";
 import { observer } from 'mobx-react-lite';
 import userStore from "../../store";
+import {ReactComponent as FeedbackIcon} from '../../atoms/icons/feedbackIcon.svg';
+
 
 function MainPage() {
     const [modalActive, setModalActive] = useState(false);
@@ -16,18 +18,24 @@ function MainPage() {
         const currentTime = Date.now() / 1000;
 
         if (tokenData.exp && tokenData.exp < currentTime) {
+            userStore.logout()
             navigate('/home');
-
         }
 
+    } else {
+        navigate('/home')
     }
         return (
             <div className='MainPage'>
-                <div>
-                    <Button title='Leave your feedback' onClick={() => setModalActive(true)} backgrndColor='violet'
-                            borderRadius='small' hover='true' size='medium' textColor='white'/>
+                <div className='FeedbackButtonBlock'>
+                    <Button onClick={() => setModalActive(true)} backgrndColor='violet' borderRadius='circle' hover='hoverCircle' >
+                        <FeedbackIcon className='FeedbackIcon'/>
+                    </Button>
+                </div>
+                <div className='FeedbackFormBlock'>
                     <FeedbackModal active={modalActive} setActive={setModalActive}/>
                 </div>
+
             </div>
         );
     }
