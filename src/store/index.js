@@ -15,8 +15,9 @@ class UserStore {
             logout: action,
         });
     }
-    login(jwt) {
+    login(jwt, username) {
         this.jwt = jwt;
+        this.username = username;
         this.isLogin = !!jwt;
     }
 
@@ -25,6 +26,7 @@ class UserStore {
         localStorage.removeItem('jwtToken');
         this.jwt = undefined;
         this.username = undefined;
+        localStorage.removeItem('jwtToken');
     }
 }
 

@@ -1,3 +1,19 @@
 .MainPage{
   height: 100vh;
+
+  .FeedbackIcon{
+    width:40px;
+    height:40px;
+  }
+
+  .FeedbackButtonBlock{
+    position: absolute;
+    bottom: 16px;
+    right: 16px;
+  }
+
+  .FeedbackFormBlock{
+    padding-top:60px;
+  }
 }
+
