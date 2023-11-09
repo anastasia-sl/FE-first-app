@@ -11,16 +11,7 @@ function MainPage() {
     const navigate = useNavigate();
     const jwtToken = userStore.jwt;
 
-    if (jwtToken) {
-        const tokenData = JSON.parse(atob(jwtToken.split('.')[1]));
-        const currentTime = Date.now() / 1000;
-
-        if (tokenData.exp && tokenData.exp < currentTime) {
-            navigate('/home');
-
-        }
-
-    }
+    
         return (
             <div className='MainPage'>
                 <div>

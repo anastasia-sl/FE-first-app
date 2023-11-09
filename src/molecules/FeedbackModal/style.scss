@@ -152,10 +152,10 @@
   .Select::-ms-expand{
     display: none;
   }
-  .ArrowIcon{
-    background: url("../../atoms/icons/arrowIcon.svg") no-repeat;
-    color: #61dafb;
-  }
+  // .ArrowIcon{
+  //   background: url("../../atoms/icons/arrowIcon.svg") no-repeat;
+  //   color: #61dafb;
+  // }
   [data-style="option-style-1"] {
     color:$lightGrey;
   }

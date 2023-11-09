@@ -22,6 +22,7 @@ class UserStore {
 
 
     logout() {
+        localStorage.removeItem('jwtToken');
         this.jwt = undefined;
         this.username = undefined;
     }
