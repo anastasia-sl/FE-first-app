@@ -1,17 +1,13 @@
 import './style.scss';
-import {useNavigate} from "react-router-dom";
 import Button from "../../atoms/Button";
 import React, {useState} from "react";
 import FeedbackModal from "../../molecules/FeedbackModal";
 import { observer } from 'mobx-react-lite';
-import userStore from "../../store";
 import {ReactComponent as FeedbackIcon} from '../../atoms/icons/feedbackIcon.svg';
-
 
 function MainPage() {
     const [modalActive, setModalActive] = useState(false);
-    const navigate = useNavigate();
-    const jwtToken = userStore.jwt;
+
         return (
             <div className='MainPage'>
                 <div className='FeedbackButtonBlock'>
