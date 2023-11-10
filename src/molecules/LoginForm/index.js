@@ -8,6 +8,7 @@ import {Link} from "react-router-dom";
 import axios from 'axios';
 import InputLabel from "../../atoms/FormInputLabel";
 import LogoMain from "../../atoms/icons/logo1.0.svg";
+import userStore from '../../store';
 
 const initialFormData = {
     username: '',
@@ -35,6 +36,7 @@ function LoginForm() {
             if (response.status === 200) {
                 setError('')
                 localStorage.setItem('jwtToken', response.data.jwt);
+                userStore.login(response.data.jwt);
                 setResponse({
                     username: response.data.username,
                     email: response.data.email,

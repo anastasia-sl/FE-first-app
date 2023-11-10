@@ -14,7 +14,7 @@ function AppRoutes() {
                 <Route path="/main" element={<AuthGuard component={<MainPage />} />} />
                 <Route path="/registration" element={<RegistrationPage/>}/>
                 <Route path="/logIn" element={<LogInPage/>}/>
-                <Route path="*" element={<Navigate to="/home" replace />} />
+                <Route path="*" element={<Navigate to="/main" replace />} />
             </Routes>
         </div>
     );
