@@ -29,10 +29,6 @@ function FeedbackModal({active, setActive}) {
 
     const handleSubmit = useCallback((event) => {
         event.preventDefault();
-        // if (!formData.message || !formData.feedbackType) {
-        //     setError('error');
-        //     return;
-        // }
         axios.post('/api/v1/feedbacks', formData, {
             headers:{
                 Authorization: 'Bearer ' + localStorage.getItem('jwtToken')
@@ -65,7 +61,7 @@ function FeedbackModal({active, setActive}) {
         <div className={active ? "OverlayActive" : "Overlay"} onClick={() => setActive(false)}>
             <form className='FeedbackModalContainer' onSubmit={handleSubmit} onClick={e => e.stopPropagation()}>
                 <div className='FeedbackModalContent'>
-                    <div className='FeedbackLogoBlock'>
+                    <div className='LogoBlock'>
                         <div className="GoBackLink">
                             <img src={LogoMain} className='FeedbackLogoImg'/>
                         </div>
