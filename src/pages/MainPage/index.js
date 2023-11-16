@@ -14,14 +14,6 @@ function MainPage() {
 
         return (
             <div className='MainPage'>
-                <div className='FeedbackButtonBlock'>
-                    <Button onClick={() => setModalActive(true)} backgrndColor='violet' borderRadius='circle' hover='hoverCircle' >
-                        <FeedbackIcon className='FeedbackIcon'/>
-                    </Button>
-                </div>
-                <div className='FeedbackFormBlock'>
-                    <FeedbackModal active={modalActive} setActive={setModalActive}/>
-                </div>
                 <div className='AddIntegrButton'>
                     <Button onClick={() => setIntegrModalActive(true)} backgrndColor='violet' borderRadius='small' size='medium' hover='true' >
                         <PlusIcon className='AddIntegrIcon'/>
@@ -30,6 +22,14 @@ function MainPage() {
                 </div>
                 <div>
                     <IntegrationRegModal active={integrModalActive} setActive={setIntegrModalActive}/>
+                </div>
+                <div className='FeedbackButtonBlock'>
+                    <Button onClick={() => setModalActive(true)} backgrndColor='violet' borderRadius='circle' hover='hoverCircle' >
+                        <FeedbackIcon className='FeedbackIcon'/>
+                    </Button>
+                </div>
+                <div className='FeedbackFormBlock'>
+                    <FeedbackModal active={modalActive} setActive={setModalActive}/>
                 </div>
             </div>
         );

@@ -121,7 +121,34 @@ input::placeholder {
 }
 .AddIntegrBtn{
   padding-bottom: 30px;
+  padding-left:560px;
 }
 
+//.SelectWrapper{
+//  position: relative;
+//  border-radius: 12px;
+//  cursor: pointer;
+//  border: $white solid 1px;
+//  width: 200px;
+//  height: 60px;
+//  &:hover {
+//    border: $violet solid 1px;
+//  }
+//  &:focus{
+//    outline: none;
+//    color: $white;
+//  }
+//}
+//select.Select::part(button) {
+// font-size:40px;
+//  padding: .5em;
+//  cursor: pointer;
+//  border-radius: 12px;
+//}
 
+.DropdownInput{
+  display:flex;
+  width:100%;
+  padding-left: 258px;
+}
 

@@ -1,27 +1,34 @@
 import React from "react";
 import {useState, useCallback, memo} from "react";
-import './style.scss';
 import Typography from "../../atoms/Typography";
 import Button from "../../atoms/Button";
 import axios from 'axios';
 import InputLabel from "../../atoms/FormInputLabel";
 import LogoMain from "../../atoms/icons/LOGOMAIN.png";
 import {ReactComponent as EyeIcon} from '../../atoms/icons/eyeIcon.svg';
-// import {ReactComponent as ClosedEyeIcon} from '../../atoms/icons/closedEyeIcon.png';
 import ClosedEyeIcon from '../../atoms/icons/closedEyeIcon.png'
+import {ReactComponent as PlusIcon} from '../../atoms/icons/plusIcon.svg';
 import { observer } from 'mobx-react-lite';
+import Dropdown from "../../atoms/dropdown";
+import './style.scss';
 
 const initialFormData = {
-    publicKey: '',
-    privateKey: '',
-    balanceName: '',
-    code: '',
+    apiKeys: {
+        publicKey: '',
+        privateKey: ''
+    },
+    code:{
+        balanceName: '',
+        code: '',
+    }
+
 };
 function IntegrationRegModal({active, setActive}) {
     const [formData, setFormData] = useState(initialFormData);
     const [response, setResponse] = useState(null);
     const [error, setError] = useState(null);
     const [showPrivateKey, setShowPrivateKey] = useState(false);
+    const [selected, setSelected] = useState("Code")
 
     const handleTogglePasswordVisibility = () => {
         setShowPrivateKey(!showPrivateKey);
@@ -115,18 +122,24 @@ function IntegrationRegModal({active, setActive}) {
                                 onChange={handleChange}
                             />
                         </div>
-                        <div className='IntegrSelection'>
+                        {/*<div className='IntegrSelection'>*/}
+                        {/*    <InputLabel title='Code'/>*/}
+                        {/*    <div className='SelectWrapper'>*/}
+                        {/*        <select name="code" required="required" onChange={handleChange} className='Select' defaultValue={"default"}>*/}
+                        {/*            <option value="default" data-style="option-style-1" disabled>Code</option>*/}
+                        {/*            <option value="WHITE_BIT" >WhiteBIT</option>*/}
+                        {/*        </select>*/}
+                        {/*    </div>*/}
+                        {/*</div>*/}
+                        <div className='InputBlock DropdownInput'>
                             <InputLabel title='Code'/>
-                            <div className='SelectWrapper'>
-                                <select name="code" required="required" onChange={handleChange} className='Select' defaultValue={"default"}>
-                                    <option value="default" data-style="option-style-1" disabled>Code</option>
-                                    <option value="WHITE_BIT" >WhiteBIT</option>
-                                </select>
-                            </div>
+                            <Dropdown selected={selected} setSelected={setSelected}/>
                         </div>
                         {error && <Typography color='white'>{error}</Typography>}
                         <div className="AddIntegrBtn">
-                            <Button onSubmit={handleSubmit} hover='true' title='Add' size='medium' borderRadius='small' backgrndColor='violet' textColor='white'/>
+                            <Button onSubmit={handleSubmit} hover='true' borderRadius='circle' backgrndColor='violet' textColor='white'>
+                                <PlusIcon className='AddIntegrIcon'/>
+                            </Button>
                         </div>
 
                     </div>
