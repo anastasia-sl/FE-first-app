@@ -39,7 +39,7 @@ Button.propTypes = {
     borderRadius: PropTypes.oneOf(['none', 'small', 'big', 'circle']),
     title: PropTypes.string,
     border: PropTypes.string,
-    hover: PropTypes.oneOf(['true', 'false']),
+    hover: PropTypes.oneOf(['true', 'hoverCircle']),
     size: PropTypes.oneOf(['small', 'medium', 'big']),
     stat: PropTypes.shape({
         target: PropTypes.string,
