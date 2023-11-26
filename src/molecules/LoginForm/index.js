@@ -8,6 +8,7 @@ import {Link} from "react-router-dom";
 import axios from 'axios';
 import InputLabel from "../../atoms/FormInputLabel";
 import LogoMain from "../../atoms/icons/logo1.0.svg";
+import userStore from '../../store';
 
 const initialFormData = {
     username: '',
@@ -30,18 +31,18 @@ function LoginForm() {
 
     const handleSubmit = useCallback((event) => {
         event.preventDefault();
-        console.log(formData)
         axios.post('/api/v1/auth/login', formData).then((response) => {
             if (response.status === 200) {
                 setError('')
-                localStorage.setItem('jwtToken', response.data.jwtToken);
+                localStorage.setItem('jwtToken', response.data.jwt);
+                userStore.login(response.data.jwt);
                 setResponse({
                     username: response.data.username,
                     email: response.data.email,
                     userRole: response.data.userRole,
-                    jwtToken: response.data.jwtToken,
+                    jwtToken: response.data.jwt,
                 });
-                navig('/home');
+                navig('/main');
             }
         })
             .catch((error) => {

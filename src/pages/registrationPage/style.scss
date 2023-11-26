@@ -3,9 +3,11 @@
 .RegistrationPageDiv{
   background-image: url("../../atoms/icons/backgroundImg.jpg");
   background-size: cover;
+  background-position: center center;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  height: 116vh;
+  overflow: auto;
+  height: 100vh;
   display: grid;
   place-items: center;
   //width: 100%;

@@ -1,0 +1,158 @@
+@import '../../colors';
+
+.Overlay{
+  height: 100vh;
+  width:100vw;
+  display: grid;
+  place-items: center;
+  position: fixed;
+  transform: scale(0);
+}
+.OverlayActive {
+  height:100vh;
+  transform: scale(1);
+}
+
+.FeedbackModalContainer{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  background-color:$black;
+  flex-shrink: 0;
+  border-radius: 60px;
+  width: 700px;
+  box-shadow: 0 0 50px $darkPurple;
+
+  .FeedbackModalContent{
+    display:flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    gap:24px;
+  }
+
+  Textarea {
+    background-color: $black;
+    color: $white;
+    font-size: 16px;
+    width: 430px;
+    height: 60px;
+    flex-shrink: 0;
+    border: 1px solid $white;
+    border-radius: 12px;
+    padding: 12px 0 0 12px;
+
+    &:hover {
+      border-color: $violet;
+    }
+  }
+  textarea::placeholder {
+    font-family: 'Inter', sans-serif;
+  }
+  textarea::-webkit-scrollbar {
+    display:none;
+  }
+  textarea::-webkit-scrollbar-track {
+    display:none;
+  }
+  textarea::-webkit-scrollbar-thumb {
+    display:none;
+  }
+
+  .FeedbackLogoBlock{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    width:100%;
+    padding-top:30px;
+  }
+
+  .GoBackLink{
+    display:flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap:100px;
+    padding-left: 30px;
+  }
+
+  .SendFeedbackButton{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .InputBlock{
+    display:flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .FeedbackModalTitle{
+    padding-left: 100px;
+  }
+  .FeedbackLogoImg{
+      width: auto;
+      height:90px;
+    }
+  .SendFeedbackButton{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 30px;
+  }
+  .FeedbackSelection{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-right: 237px;
+    align-items: flex-start;
+  }
+  .SelectWrapper{
+    position: relative;
+    border-radius: 12px;
+    cursor: pointer;
+    border: $white solid 1px;
+    width: 200px;
+    height: 60px;
+    &:hover {
+      border: $violet solid 1px;
+    }
+    &:focus{
+      outline: none;
+      color: $white;
+    }
+    i{
+      position: absolute;
+      right:0;
+      top:5px;
+      padding: 10px 13px ;
+      width: 30px;
+      height: 30px;
+      color:white;
+    }
+  }
+  .Select{
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    outline: none;
+    background-color:$black;
+    color: $white;
+    padding: 0 0 0 12px;
+    width:100%;
+    height:100%;
+    border:none;
+    border-radius: 12px;
+    font-weight: 400;
+    font-size: 16px;
+    option{
+      border-radius: 50%;
+      padding-top:10px;
+    }
+  }
+  .Select::-ms-expand{
+    display: none;
+  }
+  [data-style="option-style-1"] {
+    color:$lightGrey;
+  }
+ }

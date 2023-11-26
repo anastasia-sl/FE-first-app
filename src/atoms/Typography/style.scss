@@ -8,9 +8,6 @@
   &.SizeTitle2{
     font-size: 32px;
   }
-  &.SizeTitle5{
-    font-size: 24px;
-  }
   &.SizeTitle3{
     font-size: 16px;
   }
@@ -19,6 +16,9 @@
   }
   &.SizeTitle5{
     font-size: 24px;
+  }
+  &.SizeTitle6{
+    font-size: 20px;
   }
   &.FontWeightBody1{
     font-weight: 700;
@@ -37,6 +37,9 @@
   }
   &.TextColorBlack{
     color:$black;
+  }
+  &.TextColorViolet{
+    color:$violet;
   }
   &.TextColorLightGrey{
     color:$lightGrey;

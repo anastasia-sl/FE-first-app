@@ -1,18 +1,19 @@
-import {Routes, Route, Link} from "react-router-dom"
+import {Routes, Route, Link, Navigate} from "react-router-dom"
 import HomePage from "../pages/homePage";
 import RegistrationPage from "../pages/registrationPage";
 import LogInPage from "../pages/LogInPage";
-import FeedbackPage from "../pages/FeedbackPage";
+import MainPage from "../pages/MainPage";
+import AuthGuard from "../guards/AuthGuard";
 
 function AppRoutes() {
     return (
         <div className="AppRoutesDiv">
             <Routes>
-                <Route path="/home" element={<HomePage/>}/>
+                <Route path="/home" element={<HomePage />}/>
+                <Route path="/main" element={<AuthGuard component={<MainPage />} />} />
                 <Route path="/registration" element={<RegistrationPage/>}/>
                 <Route path="/logIn" element={<LogInPage/>}/>
-                <Route path="/feedback" element={<FeedbackPage/>}/>
-                <Route path="*" element={<HomePage/>}/>
+                <Route path="*" element={<Navigate to="/main" replace />} />
             </Routes>
         </div>
     );

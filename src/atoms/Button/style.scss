@@ -63,6 +63,12 @@
     border-radius: 30px;
   }
 
+  &.BorderRadiusCircle {
+    border-radius: 50%;
+    width:60px;
+    height:60px;
+  }
+
   &.SizeSmall {
     height: 40px;
     width: 100px;
@@ -90,8 +96,14 @@
 
   &.Hover{
     &:hover {
-      box-shadow: 6px 6px 6px black;
-      width:208px;
+      background-color: $lavender;
+
+    }
+  }
+
+  &.HoverCircle{
+    &:hover {
+      background-color: $lavender;
     }
   }
 }

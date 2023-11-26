@@ -1,11 +1,10 @@
-import './style.scss';
 import RegistrationForm from "../../molecules/RegistrationForm";
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import './style.scss';
 
 function RegistrationPage() {
     return (
         <div className='RegistrationPageDiv'>
-            <RegistrationForm />
+            <RegistrationForm  />
         </div>
     );
 }

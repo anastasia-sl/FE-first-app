@@ -67,10 +67,6 @@
   }
   .RealCheckbox{
     display: none;
-    //width: 0;
-    //height: 0;
-    //position: absolute;
-    //z-index: -1;
   }
   .CustomCheckbox{
     position: relative;
@@ -90,7 +86,6 @@
       width:15px;
       height:15px;
       border-radius: 25%;
-      background-color: $violet;
       position:absolute;
       left:50%;
       top:50%;
@@ -101,7 +96,7 @@
   }
 
   .RealCheckbox:checked + .CustomCheckbox::before {
-    //background-color: $violet;
+    background-color: $violet;
     transform: translate(-50%, -50%) scale(1);
   }
 
@@ -109,11 +104,5 @@
     gap: 40px;
     display: flex;
     flex-direction: column;
-  }
-
-  .RegButtonDiv{
-    &:hover{
-
-    }
   }
 }
