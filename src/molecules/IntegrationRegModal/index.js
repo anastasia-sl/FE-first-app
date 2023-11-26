@@ -13,14 +13,12 @@ import Dropdown from "../../atoms/dropdown";
 import './style.scss';
 
 const initialFormData = {
-    apiKeys: {
+    apiKeysReq: {
         publicKey: '',
-        privateKey: ''
+        secretKey: ''
     },
-    code:{
         balanceName: '',
-        code: '',
-    }
+        code: 'WHITE_BIT',
 
 };
 function IntegrationRegModal({active, setActive}) {
@@ -42,6 +40,32 @@ function IntegrationRegModal({active, setActive}) {
         });
     }
 
+    // const handleChange = (event) => {
+    //     const { name, value } = event.target;
+    //
+    //     setFormData({
+    //         ...formData,
+    //         apiKeysReq: {
+    //             ...formData.apiKeysReq,
+    //             [name]: value,
+    //         },
+    //     });
+    // };
+
+    // const handleChange = (event) => {
+    //     const { name, value } = event.target;
+    //
+    //     setFormData((prevData) => {
+    //         if (name.startsWith("apiKeysReq")) {
+    //             // Якщо поле відноситься до apiKeysReq
+    //             const apiKeysReq = { ...prevData.apiKeysReq, [name.split(".")[1]]: value };
+    //             return { ...prevData, apiKeysReq };
+    //         } else {
+    //             // Інакше, якщо поле відноситься до інших частин форми
+    //             return { ...prevData, [name]: value };
+    //         }
+    //     });
+    // };
     const handleSubmit = useCallback((event) => {
         event.preventDefault();
         axios.post('/api/v1/exchangers/api-keys', formData, {
@@ -87,8 +111,8 @@ function IntegrationRegModal({active, setActive}) {
                             <input
                                 className='Input'
                                 placeholder="Public key"
-                                name="publicKey"
-                                value={formData.publicKey}
+                                name="apiKeysReq.publicKey"
+                                value={formData.apiKeysReq.publicKey}
                                 type='text'
                                 required
                                 onChange={handleChange}
@@ -100,8 +124,8 @@ function IntegrationRegModal({active, setActive}) {
                                 <input
                                     className='InputPrivate'
                                     placeholder="Private key"
-                                    name="privateKey"
-                                    value={formData.privateKey}
+                                    name="apiKeysReq.secretKey"
+                                    value={formData.apiKeysReq.secretKey}
                                     type={showPrivateKey ? 'text' : 'password'}
                                     required
                                     onChange={handleChange}
@@ -133,7 +157,7 @@ function IntegrationRegModal({active, setActive}) {
                         {/*</div>*/}
                         <div className='InputBlock DropdownInput'>
                             <InputLabel title='Code'/>
-                            <Dropdown selected={selected} setSelected={setSelected}/>
+                            <Dropdown selected={selected} setSelected={setSelected} />
                         </div>
                         {error && <Typography color='white'>{error}</Typography>}
                         <div className="AddIntegrBtn">
