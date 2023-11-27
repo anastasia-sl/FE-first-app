@@ -1,26 +1,34 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import './style.scss';
 import Typography from "../Typography";
 
-function Dropdown ({selected, setSelected}) {
+function Dropdown ({defaultValue, onChange}) {
     const [isActive, setIsActive] = useState(false);
+    const [value, setValue] = useState(defaultValue);
     const options = ['WhiteBIT', 'other']
 
+    const handleChange = (option) => {
+        setValue(option)
+        setIsActive(false)
+    }
+
+    useEffect(() => {
+        if(typeof onChange === 'function'){
+            onChange(value);
+        }
+    }, [value]);
     return(
         <div className='Dropdown'>
             <div className='DropdownBtn' onClick={(e) => setIsActive(!isActive)}>
                 <Typography fontWeight='body3' variant='title3' color='white'>
-                    {selected}
+                    {value}
                 </Typography>
             </div>
             {isActive && (
             <div className='DropdownContent'>
                 {options.map(option => (
                     <div
-                        onClick={(e) => {
-                         setSelected(option)
-                         setIsActive(false)
-                     }}
+                        onClick={() =>  handleChange(option)}
                         className='DropdownItem' >
                         {option}
                     </div>
