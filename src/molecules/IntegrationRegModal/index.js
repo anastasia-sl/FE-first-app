@@ -18,8 +18,7 @@ const initialFormData = {
         secretKey: ''
     },
         balanceName: '',
-        code: 'WHITE_BIT',
-
+        code: '',
 };
 function IntegrationRegModal({active, setActive}) {
     const [formData, setFormData] = useState(initialFormData);
@@ -32,12 +31,23 @@ function IntegrationRegModal({active, setActive}) {
         setShowPrivateKey(!showPrivateKey);
     };
 
+    const formChange = (field, value) => {
+        const nextFormData = {...formData}
+
+        if(field.includes(".")){
+            const path = field.split(".");
+            nextFormData[path[0]][path[1]] = value;
+        } else{
+            nextFormData[field] = value;
+        }
+        setFormData(nextFormData);
+    }
+
+
     const handleChange = (event) => {
         const { name, value } = event.target;
-        setFormData({
-            ...formData,
-            [name]: value,
-        });
+        console.log(name, value);
+        formChange(name, value);
     }
 
     // const handleChange = (event) => {
@@ -157,7 +167,7 @@ function IntegrationRegModal({active, setActive}) {
                         {/*</div>*/}
                         <div className='InputBlock DropdownInput'>
                             <InputLabel title='Code'/>
-                            <Dropdown selected={selected} setSelected={setSelected} />
+                            <Dropdown defaultValue="Code" onChange={(value) => formChange('code', value)}/>
                         </div>
                         {error && <Typography color='white'>{error}</Typography>}
                         <div className="AddIntegrBtn">
