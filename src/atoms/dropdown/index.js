@@ -2,15 +2,24 @@ import React, {useState, useEffect} from "react";
 import './style.scss';
 import Typography from "../Typography";
 
-function Dropdown ({defaultValue, onChange}) {
+function Dropdown ({value:outerValue, defaultValue, onChange}) {
     const [isActive, setIsActive] = useState(false);
     const [value, setValue] = useState(defaultValue);
-    const options = ['WhiteBIT', 'other']
+    const options = ['WHITE_BIT', "BINANCE"]
 
     const handleChange = (option) => {
         setValue(option)
         setIsActive(false)
     }
+
+    useEffect(() => {
+        if(!!outerValue && value !== outerValue){
+            setValue(outerValue);
+        }
+        if(!outerValue){
+            setValue(defaultValue)
+        }
+    }, [outerValue]);
 
     useEffect(() => {
         if(typeof onChange === 'function'){
@@ -26,8 +35,9 @@ function Dropdown ({defaultValue, onChange}) {
             </div>
             {isActive && (
             <div className='DropdownContent'>
-                {options.map(option => (
+                {options.map((option, index) => (
                     <div
+                        key={index}
                         onClick={() =>  handleChange(option)}
                         className='DropdownItem' >
                         {option}

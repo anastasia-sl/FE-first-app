@@ -12,20 +12,23 @@ import { observer } from 'mobx-react-lite';
 import Dropdown from "../../atoms/dropdown";
 import './style.scss';
 
-const initialFormData = {
-    apiKeysReq: {
-        publicKey: '',
-        secretKey: ''
-    },
+const getInitialFormData = () => {
+    return {
+        apiKeysReq: {
+            publicKey: '',
+            secretKey: ''
+        },
         balanceName: '',
         code: '',
+    }
 };
+const initialFormData = getInitialFormData();
 function IntegrationRegModal({active, setActive}) {
     const [formData, setFormData] = useState(initialFormData);
     const [response, setResponse] = useState(null);
     const [error, setError] = useState(null);
     const [showPrivateKey, setShowPrivateKey] = useState(false);
-    const [selected, setSelected] = useState("Code")
+    // const [selected, setSelected] = useState("Code")
 
     const handleTogglePasswordVisibility = () => {
         setShowPrivateKey(!showPrivateKey);
@@ -46,36 +49,9 @@ function IntegrationRegModal({active, setActive}) {
 
     const handleChange = (event) => {
         const { name, value } = event.target;
-        console.log(name, value);
         formChange(name, value);
     }
 
-    // const handleChange = (event) => {
-    //     const { name, value } = event.target;
-    //
-    //     setFormData({
-    //         ...formData,
-    //         apiKeysReq: {
-    //             ...formData.apiKeysReq,
-    //             [name]: value,
-    //         },
-    //     });
-    // };
-
-    // const handleChange = (event) => {
-    //     const { name, value } = event.target;
-    //
-    //     setFormData((prevData) => {
-    //         if (name.startsWith("apiKeysReq")) {
-    //             // Якщо поле відноситься до apiKeysReq
-    //             const apiKeysReq = { ...prevData.apiKeysReq, [name.split(".")[1]]: value };
-    //             return { ...prevData, apiKeysReq };
-    //         } else {
-    //             // Інакше, якщо поле відноситься до інших частин форми
-    //             return { ...prevData, [name]: value };
-    //         }
-    //     });
-    // };
     const handleSubmit = useCallback((event) => {
         event.preventDefault();
         axios.post('/api/v1/exchangers/api-keys', formData, {
@@ -83,8 +59,7 @@ function IntegrationRegModal({active, setActive}) {
                 Authorization: 'Bearer ' + localStorage.getItem('jwtToken')
             }
         }).then((response) => {
-            console.log(formData)
-            if (response.status === 201) {
+            if ([200, 201].includes(response.status)) {
                 setActive(false);
                 setError(null)
 
@@ -92,17 +67,16 @@ function IntegrationRegModal({active, setActive}) {
                     balanceId: response.data.balanceId,
                     userId: response.data.userId,
                     status: response.data.status
-                })
-            }
+                });
+                const nextFormData = getInitialFormData();
+                setFormData(nextFormData);
+             }
         })
             .catch((error) => {
                 setResponse(null);
                 setError('Something went wrong. Please try again.');
             });
-        setFormData(initialFormData);
-
-
-    }, [formData])
+    }, [formData]);
 
     return (<>
             <div className={active ? "OverlayActive" : "Overlay"} onClick={() => setActive(false)}>
@@ -156,23 +130,14 @@ function IntegrationRegModal({active, setActive}) {
                                 onChange={handleChange}
                             />
                         </div>
-                        {/*<div className='IntegrSelection'>*/}
-                        {/*    <InputLabel title='Code'/>*/}
-                        {/*    <div className='SelectWrapper'>*/}
-                        {/*        <select name="code" required="required" onChange={handleChange} className='Select' defaultValue={"default"}>*/}
-                        {/*            <option value="default" data-style="option-style-1" disabled>Code</option>*/}
-                        {/*            <option value="WHITE_BIT" >WhiteBIT</option>*/}
-                        {/*        </select>*/}
-                        {/*    </div>*/}
-                        {/*</div>*/}
                         <div className='InputBlock DropdownInput'>
                             <InputLabel title='Code'/>
-                            <Dropdown defaultValue="Code" onChange={(value) => formChange('code', value)}/>
+                            <Dropdown defaultValue="Code" onChange={(value) => formChange('code', value)} value={formData.code}/>
                         </div>
                         {error && <Typography color='white'>{error}</Typography>}
                         <div className="AddIntegrBtn">
                             <Button onSubmit={handleSubmit} hover='true' borderRadius='circle' backgrndColor='violet' textColor='white'>
-                                <PlusIcon className='AddIntegrIcon'/>
+                                <PlusIcon className='AddIntegrIcon' />
                             </Button>
                         </div>
 
