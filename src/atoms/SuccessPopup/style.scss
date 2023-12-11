@@ -1,0 +1,39 @@
+@import '../../colors';
+.Overlay{
+  height: 100vh;
+  width:100vw;
+  display: grid;
+  place-items: center;
+  position: fixed;
+  transform: scale(0);
+}
+.OverlayActive {
+  transform: scale(1);
+}
+.SuccessPopup{
+  display: block;
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  //padding-top: 150px;
+  background-color:$lightGreen;
+  border-color: #a3cfbb;
+  flex-shrink: 0;
+  border-radius: 10px;
+  width: 740px;
+  height: 58px;
+
+  .SuccessPopupContent{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .SuccessIcon{
+    padding:20px;
+    width: 70px;
+    height: 70px;
+    fill:$white;
+  }
+}
