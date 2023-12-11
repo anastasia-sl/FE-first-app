@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {useState, useCallback, memo} from "react";
 import Typography from "../../atoms/Typography";
 import Button from "../../atoms/Button";
@@ -11,6 +11,7 @@ import {ReactComponent as PlusIcon} from '../../atoms/icons/plusIcon.svg';
 import { observer } from 'mobx-react-lite';
 import Dropdown from "../../atoms/dropdown";
 import './style.scss';
+import SuccessPopup from "../../atoms/SuccessPopup";
 
 const getInitialFormData = () => {
     return {
@@ -28,7 +29,7 @@ function IntegrationRegModal({active, setActive}) {
     const [response, setResponse] = useState(null);
     const [error, setError] = useState(null);
     const [showPrivateKey, setShowPrivateKey] = useState(false);
-    // const [selected, setSelected] = useState("Code")
+    const [isGratefulWindowOpen, setIsGratefulWindowOpen] = useState(false);
 
     const handleTogglePasswordVisibility = () => {
         setShowPrivateKey(!showPrivateKey);
@@ -61,7 +62,8 @@ function IntegrationRegModal({active, setActive}) {
         }).then((response) => {
             if ([200, 201].includes(response.status)) {
                 setActive(false);
-                setError(null)
+                setError(null);
+                setIsGratefulWindowOpen(true);
 
                 setResponse({
                     balanceId: response.data.balanceId,
@@ -140,10 +142,12 @@ function IntegrationRegModal({active, setActive}) {
                                 <PlusIcon className='AddIntegrIcon' />
                             </Button>
                         </div>
-
                     </div>
                 </form>
             </div>
+            {isGratefulWindowOpen && (
+                <SuccessPopup activeGrateful={isGratefulWindowOpen} setActiveGrateful={setIsGratefulWindowOpen} onClose={() => setIsGratefulWindowOpen(false)} /> // Передайте функцію для закриття GratefulWindow
+            )}
         </>
     );
 }

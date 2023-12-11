@@ -1,9 +1,24 @@
-import React from "react";
+import React, {ReactNode, FC} from "react";
 import PropTypes from "prop-types";
 import './style.scss';
 import cn from 'classnames';
-function Typography (props){
-    const {variant, color, filling, textCase, fontWeight} = props;
+interface TypographyProps {
+    fontWeight?: string;
+    variant?: string;
+    color?: 'white' | 'black' | 'lightGrey' | 'darkGrey' | 'violet' | 'darkGreen';
+    filling?: 'none' | 'white' | 'grey' | 'black';
+    textCase?: 'lower' | 'normal' | 'upper';
+    children?: ReactNode;
+}
+
+const Typography: FC<TypographyProps> = ({
+    variant,
+    color,
+    filling,
+    textCase,
+    fontWeight,
+    children,
+  }) => {
     return (
         <p className={cn('AppTypography', {
             'SizeTitle1': variant === 'title1',
@@ -21,6 +36,7 @@ function Typography (props){
             'TextColorViolet': color === 'violet',
             'TextColorLightGrey': color === 'lightGrey',
             'TextColorDarkGrey': color === 'darkGrey',
+            'TextColorDarkGreen': color === 'darkGreen',
             'NoFilling': filling === 'none',
             'FillingWhite': filling === 'white',
             'FillingGrey': filling === 'grey',
@@ -28,13 +44,13 @@ function Typography (props){
             'TextCaseLower': textCase === 'lower',
             'TextCaseNormal': textCase === 'normal',
             'TextCaseUpper': textCase === 'upper',
-        })}>{props.children}</p>
+        })}>{children}</p>
     )}
 
 Typography.propTypes = {
     fontWeight:PropTypes.string,
     variant: PropTypes.string,
-    color: PropTypes.oneOf(['white', 'black', 'lightGrey', 'darkGrey', 'violet']),
+    color: PropTypes.oneOf(['white', 'black', 'lightGrey', 'darkGrey', 'violet', 'darkGreen']),
     filling: PropTypes.oneOf(['none', 'white', 'grey', 'black']),
     textCase: PropTypes.oneOf(['lower', 'normal', 'upper']),
 }
