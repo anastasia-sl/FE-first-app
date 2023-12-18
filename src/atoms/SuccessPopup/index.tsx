@@ -18,14 +18,16 @@ const SuccessPopup: FC<SuccessPopupProps> = ({ activeGrateful, setActiveGrateful
 
     return (
         <div className={activeGrateful ? "OverlayActive" : "Overlay"} onClick={handleClick}>
-            <div className='SuccessPopup'>
-                <div className='SuccessPopupContent'>
-                    {/*<div className='SuccessIconBlock'>*/}
-                    {/*    <CheckIcon className='SuccessIcon' />*/}
-                    {/*</div>*/}
-                    <Typography color='darkGreen' fontWeight='body3' variant='title3'>
-                        You have successfully added a new integration
-                    </Typography>
+            <div className="Container">
+                <div className="SuccessPopup">
+                    <div className='SuccessPopupContent'>
+                        {/*<div className='SuccessIconBlock'>*/}
+                        {/*    <CheckIcon className='SuccessIcon' />*/}
+                        {/*</div>*/}
+                        <Typography color='darkGreen' fontWeight='body3' variant='title3'>
+                            You have successfully added a new integration
+                        </Typography>
+                    </div>
                 </div>
             </div>
         </div>

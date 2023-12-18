@@ -10,15 +10,19 @@
   }
 
   .FeedbackButtonBlock{
-    position: absolute;
+    position: fixed;
     bottom: 16px;
     right: 16px;
   }
 
-  .AddIntegrIcon{
-    width:20px;
-    height:20px;
-    fill:$white;
+  .AddIntegrButton{
+    width:170px;
   }
+
+  .AddIntegrIcon{
+     width:20px;
+     height:20px;
+     fill:$white;
+   }
 }
 
