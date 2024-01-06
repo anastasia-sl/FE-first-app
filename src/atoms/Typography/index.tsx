@@ -1,7 +1,7 @@
-import React, {ReactNode, FC} from "react";
-import PropTypes from "prop-types";
+import React, { ReactNode, FC } from "react";
 import './style.scss';
 import cn from 'classnames';
+
 interface TypographyProps {
     fontWeight?: string;
     variant?: string;
@@ -13,12 +13,12 @@ interface TypographyProps {
 
 const Typography: FC<TypographyProps> = ({
     variant,
-    color,
-    filling,
-    textCase,
-    fontWeight,
+    color = 'lightGrey',
+    filling = 'none',
+    textCase = 'normal',
+    fontWeight = 'body3',
     children,
-  }) => {
+   }) => {
     return (
         <p className={cn('AppTypography', {
             'SizeTitle1': variant === 'title1',
@@ -45,21 +45,7 @@ const Typography: FC<TypographyProps> = ({
             'TextCaseNormal': textCase === 'normal',
             'TextCaseUpper': textCase === 'upper',
         })}>{children}</p>
-    )}
-
-Typography.propTypes = {
-    fontWeight:PropTypes.string,
-    variant: PropTypes.string,
-    color: PropTypes.oneOf(['white', 'black', 'lightGrey', 'darkGrey', 'violet', 'darkGreen']),
-    filling: PropTypes.oneOf(['none', 'white', 'grey', 'black']),
-    textCase: PropTypes.oneOf(['lower', 'normal', 'upper']),
-}
-
-Typography.defaultProps = {
-    color:'lightGrey',
-    filling:'none',
-    textCase:'normal',
-    fontWeight:'body3',
-}
+    );
+};
 
 export default Typography;

@@ -1,10 +1,37 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React, { FC, ReactNode } from "react";
 import './style.scss';
 import cn from 'classnames';
-function Button (props){
-    const {backgrndColor, textColor, shadow, borderRadius, border, title, font, children, size, stat, hover, ...baseProps} = props;
 
+interface ButtonProps {
+    backgrndColor?: 'white' | 'violet' | 'none';
+    textColor?: 'white' | 'black' | 'orange';
+    shadow?: boolean;
+    borderRadius?: 'none' | 'small' | 'big' | 'circle';
+    title?: string;
+    border?: string;
+    hover?: 'true' | 'hoverCircle';
+    size?: 'small' | 'medium' | 'big';
+    stat?: {
+        target: string;
+        eventType: string;
+        count: number;
+    };
+    children?: ReactNode;
+}
+
+const Button: FC<ButtonProps> = ({
+    backgrndColor = 'orange',
+    textColor = 'black',
+    shadow = false,
+    borderRadius = 'none',
+    title,
+    border,
+    hover,
+    size,
+    stat,
+    children,
+    ...baseProps
+   }) => {
     return (
         <button className={cn('AppButton', {
             'BackgroundColorWhite': backgrndColor === 'white',
@@ -24,36 +51,13 @@ function Button (props){
             'Hover': hover === 'true',
             'HoverCircle': hover === 'hoverCircle',
         })}
-                {...baseProps}>
+                {...baseProps}
+        >
             {title}
             {' '}
             {children}
         </button>
-    )
-}
-
-Button.propTypes = {
-    backgrndColor:PropTypes.oneOf(['white', 'violet', 'none']),
-    textColor: PropTypes.oneOf(['white', 'black', 'orange']),
-    shadow: PropTypes.bool,
-    borderRadius: PropTypes.oneOf(['none', 'small', 'big', 'circle']),
-    title: PropTypes.string,
-    border: PropTypes.string,
-    hover: PropTypes.oneOf(['true', 'hoverCircle']),
-    size: PropTypes.oneOf(['small', 'medium', 'big']),
-    stat: PropTypes.shape({
-        target: PropTypes.string,
-        eventType: PropTypes.string,
-        count: PropTypes.number,
-    })
-}
-Button.defaultProps = {
-    backgrndColor:'orange',
-    textColor:'black',
-    shadow: false,
-    borderRadius:'none',
-    // size: 'medium',
-}
-
+    );
+};
 
 export default Button;
