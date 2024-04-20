@@ -31,7 +31,7 @@ function LoginForm() {
 
     const handleSubmit = useCallback((event) => {
         event.preventDefault();
-        axios.post('/api/v1/auth/login', formData).then((response) => {
+        axios.post('/auth/login', formData).then((response) => {
             if (response.status === 200) {
                 setError('')
                 localStorage.setItem('jwtToken', response.data.jwt);

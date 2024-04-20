@@ -29,7 +29,7 @@ function FeedbackModal({active, setActive}) {
 
     const handleSubmit = useCallback((event) => {
         event.preventDefault();
-        axios.post('/api/v1/feedbacks', formData, {
+        axios.post('/feedbacks', formData, {
             headers:{
                 Authorization: 'Bearer ' + localStorage.getItem('jwtToken')
             }

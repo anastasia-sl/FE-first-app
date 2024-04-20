@@ -46,7 +46,7 @@ function RegistrationForm() {
             return;
         }
 
-        axios.post('/api/v1/auth/register', formData).then((response) => {
+        axios.post('/auth/register', formData).then((response) => {
             if (response.status === 201) {
                 localStorage.setItem('username', response.data.username);
                 localStorage.setItem('jwtToken', response.data.jwt);

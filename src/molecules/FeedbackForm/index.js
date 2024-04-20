@@ -32,7 +32,7 @@ function FeedbackForm() {
     const handleSubmit = useCallback((event) => {
         event.preventDefault();
         console.log(formData)
-        axios.post('/api/v1/feedbacks', formData).then((response) => {
+        axios.post('/feedbacks', formData).then((response) => {
             if (response.status === 200) {
                 setError('')
                 localStorage.setItem('username', response.data.username);

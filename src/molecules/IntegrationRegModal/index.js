@@ -55,7 +55,7 @@ function IntegrationRegModal({active, setActive}) {
 
     const handleSubmit = useCallback((event) => {
         event.preventDefault();
-        axios.post('/api/v1/exchangers/api-keys', formData, {
+        axios.post('/exchangers/api-keys', formData, {
             headers:{
                 Authorization: 'Bearer ' + localStorage.getItem('jwtToken')
             }
